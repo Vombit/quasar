@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: azure;
+}
+body {
+    font-family: sans-serif;
+    font-size: 20px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #000;
+}
+/* 
+#5aacac
+
+
+
+
+*/
+
+/* [class^="box-"] {
+    background-color: skyblue;
+    
+    
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+} */
+.box {
+    background-color: #222;
+    
+    display: grid;
+    place-items: center;
+    border-radius: 8px;
+}
+
+
+.container {
+    margin: 0 8px;
+    display: grid;
+    gap: 10px;
+    height: 100vh;
+    grid-template-areas:
+        "Header    Header      Header   Header      Header   Header"
+        "Playlists Sounds      Sounds   Sounds      Sounds   Sounds"
+        "Controls  Controls    Controls Controls    Controls Controls";
+    grid-template-rows: 60px auto 85px;
+}
+.Header {
+    grid-area: Header;
+    background-color: transparent;
+
+    display: grid;
+    grid-template-columns: auto 5% 3%;
+    justify-content: stretch;
+}
+.profile_header button {
+    background-color: #fc6666;
+    padding: 5px;
+    border-radius: 8px;
+}
+.profile_header button:hover {
+    background-color: #b44444;
+}
+.Playlists {
+    grid-area: Playlists;
+}
+.Sounds {
+    grid-area: Sounds;
+}
+
+.Controls {
+    grid-area: Controls;
+    display: grid;
+    gap: 10px;
+    margin: 0 10px;
+    grid-template-areas:
+        "track_info  prev  contol  next";
+    grid-template-columns: 19% 15% auto 15%;
+    justify-content: stretch;
+}
+
+.next_track {
+    text-align: right;
+}
+.prev_track{
+    text-align: left;
+}
+
+
+
+
+.info_track {
+    display: grid;
+    /* gap: 0 15px; */
+    /* margin: 0 10px; */
+    grid-template-areas:
+        "cover_img   cover_name     cover_likes"
+        "cover_img   cover_author   cover_likes";
+    grid-template-columns: 64px auto 12%;
+    height: 64px;
+}
+.cover_img {
+    grid-area: cover_img;
+    border-radius: 8px;
+    width: 64px;
+    height: 64px;
+}
+.cover_name {
+    margin-top: 8px;
+    margin-bottom: -5px;
+    grid-area: cover_name;
+    color: #efeff0;
+    margin-left: 15px;
+}
+.cover_author {
+    grid-area: cover_author;
+    font-size: small;
+    color: #89798e;
+    margin-left: 15px;
+}
+.cover_likes {
+    grid-area: cover_likes;
+    align-self: center;
+    width: 24px;
+    margin-top: 5px;
+    margin-left: -15px;
+}
+
+.queue {
+    font-size: medium;
+    margin: 0 10px;
+}
+.queue_title {
+    margin: 0 10px;
+    font-size:small;
+    color: #89798e;
+}
+
+
+.player-control {
+    width: 730px;
+    margin: 0 auto;
+}
+.progress_bar {
+    display: flex;
+    align-items: center;
+}
+.progress_container {
+    background: #333;
+    border-radius: 5px;
+    height: 6px;
+    width: 650px;
+
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    margin: 0 auto;
+}
+.progress {
+    background: #fff;
+    border-radius: 5px;
+    height: 4px;
+    /* width: 150px; */
+}
+.control_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 128px;
+    margin: 0 auto;
+}
+
+.time_bar {
+    font-size: 15px;
+    color: #777;
+}
+
+
+
+
+.search {
+    padding: 10px;
+    text-align: center;
+    border-radius: 30px;
+    background-color: #222;
+    color: aliceblue!important;
+    height: 45px;
+    width: 330px;
+    -webkit-tap-highlight-color: transparent;
+    border: none;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn img {
+    width: 20px;
+    height: 20px;
+    color: #ff0;
+}
+#play {
+    fill: red;
+}
+.btn .play_stop {
+    width: 32px;
+    height: 32px;
+}
+
+/* button {
+    background-color: #941971;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.player-control {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.player-control_buttons div {
+    display: inline-block;
+}
+
+.playback-bar div {
+    display: inline-block;
+    color: antiquewhite;
+}
+.testt::after {
+    content: "";
+    font-family: "FontAwesome";
+    margin-left: 5px;
+} */

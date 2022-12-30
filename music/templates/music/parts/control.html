@@ -1,0 +1,96 @@
+{% load static %}
+<div class="Controls">
+    <div class="info_track">
+        <img class="cover_img" id="cover_img" src="">
+        <div class="cover_name">now_track_name</div>
+        <div class="cover_author">now_track_name_author</div>
+    </div>
+    <div class="prev_track">
+        <div class="queue">PREVIOUS</div>
+        <div class="queue_title">title_prev_track</div>
+    </div>
+
+    <div class="player-control">
+        <div class="control_buttons">
+            <div class="liked_bar">
+                <div class="btn liked">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 128 128" class="icon">
+                        <path d="M64,114.58c-3.7,0-5.44-1.81-12.79-9.41c-1.85-1.91-4.1-4.24-6.88-7.06c-1.31-1.33-4.14-4.16-7.69-7.7l-6.75-6.74    c-1.87-1.87-3.93-3.86-5.93-5.77c-4.77-4.58-9.27-8.91-11.63-12.1c-0.55-0.74-13.27-18.24-2.28-35.41    C13.95,24.26,22.2,17.8,31.8,17.17l0.63-0.05c0.83-0.06,1.86-0.14,3.06-0.14c8.56,0,16.54,4.26,24.4,13.01    c2.99,3.33,3.33,3.33,4.1,3.33c0.24,0,1.06-0.32,3.48-3.23c7.21-8.71,15.13-12.94,24.22-12.94c1.74,0,3.29,0.15,4.54,0.26    c8.44,0.79,16.76,5.89,21.25,12.99c9.38,14.85,3.04,30.64-2.44,35.79l-0.17,0.18c-4.79,5.11-11.77,12.02-16.79,16.92    c-6.87,6.71-10.69,10.61-13.48,13.47l-1.32,1.35c-2.56,2.61-4.67,4.79-6.44,6.61C68.74,113.07,67.27,114.58,64,114.58z"/> 
+                    </svg>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="btn shuffle">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" viewBox="14 18 64 64" class="icon">
+                    <path style="stroke-width:0;" d="M81.671,35.527l-16.722-9.654c-0.674-0.389-1.517,0.097-1.517,0.876v5.963c-6.124-0.454-11.125,0.817-14.866,3.819   c-4.55,3.651-5.638,8.632-6.598,13.025c-0.781,3.574-1.519,6.95-3.896,9.983c-3.381,4.313-9.461,6.904-18.07,7.701   c-1.925,0.178-3.341,1.883-3.163,3.808c0.168,1.815,1.693,3.178,3.481,3.177c0.107,0,0.217-0.005,0.326-0.015   c10.604-0.981,18.319-4.464,22.935-10.352c3.366-4.293,4.354-8.816,5.227-12.808c0.849-3.887,1.52-6.957,4.14-9.061   c2.406-1.931,5.939-2.677,10.486-2.254v6.321c0,0.779,0.843,1.265,1.517,0.876l16.722-9.654   C82.345,36.889,82.345,35.916,81.671,35.527z"/>
+                    <path style="stroke-width:0;" d="M81.671,67.345l-16.722,9.654c-0.674,0.389-1.517-0.097-1.517-0.876V70.16c-6.124,0.454-11.125-0.817-14.866-3.819   c-4.55-3.651-5.638-8.632-6.598-13.025c-0.781-3.574-1.519-6.95-3.896-9.983c-3.381-4.313-9.461-6.904-18.07-7.701   c-1.925-0.178-3.341-1.883-3.163-3.808c0.168-1.815,1.693-3.178,3.481-3.177c0.107,0,0.217,0.005,0.326,0.015   c10.604,0.981,18.319,4.464,22.935,10.352c3.366,4.293,4.354,8.816,5.227,12.808c0.849,3.887,1.52,6.957,4.14,9.061   c2.406,1.931,5.939,2.677,10.486,2.254v-6.321c0-0.779,0.843-1.265,1.517-0.876l16.722,9.654   C82.345,65.982,82.345,66.955,81.671,67.345z"/>
+                    </svg>
+                </div>
+                <div class="btn prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 128 128" class="icon">
+                        <polyline style="fill: none;" points="112,16 32,64 112,112  "/>
+                        <path d="M16,16c0,32,0,64,0,96"/>
+                    </svg>
+                </div>
+                <div class="btn play">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 128 128" class="icon play">
+                        <path d="M16,115c-0.55,0-1.1-0.15-1.58-0.45C13.54,114,13,113.04,13,112V16c0-1.04,0.54-2.01,1.42-2.55C14.9,13.15,15.45,13,16,13    c0.46,0,0.92,0.1,1.34,0.32l96,48c1.02,0.51,1.66,1.55,1.66,2.68c0,1.14-0.64,2.17-1.66,2.68l-96,48    C16.92,114.89,16.46,115,16,115z"></path>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 128 128" class="icon pause hidden">
+                        <path d="M32,115c-1.66,0-3-1.34-3-3V16c0-1.66,1.34-3,3-3h16c1.66,0,3,1.34,3,3v96c0,1.66-1.34,3-3,3H32z"/>
+                        <path d="M80,115c-1.66,0-3-1.34-3-3V16c0-1.66,1.34-3,3-3h16c1.66,0,3,1.34,3,3v96c0,1.66-1.34,3-3,3H80z"/>
+                    </svg>
+                </div>
+                <div class="btn next">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 128 128" class="icon">
+                            <polyline style="fill: none;" points="16,16 96,64 16,112"/>
+                            <path d="M112,16c0,32,0,64,0,96"/>
+                    </svg>
+                </div>
+                <div class="btn repeat">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 128 128" class="icon" style="fill: none;">
+                            <path d="M104,32c-1.34-1.74-3.98-4.92-8-8C78.76,10.77,50.2,9.98,32,24c-3.65,2.81-6.25,5.73-8,8   c-13.73,17.82-13.73,46.18,0,64c1.75,2.27,4.35,5.19,8,8c17.78,13.69,46.11,13.77,64,0c3.94-3.03,6.53-6.09,8-8   c14.15-18.41,9.44-41.84,8-48"/>
+                            <polyline points="102.01,12.25 106.96,34.17 85.04,29.22  "/>
+                    </svg>
+                </div>
+            </div>
+        
+            <div class="sound_bar">
+                <div class="btn sound">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="24" viewBox="0 0 128 128" class="icon" style="fill: none;stroke-width:8;">
+                            <path d="M95.97,24L19.32,58.84c-4.43,2.01-4.43,8.31,0,10.33L95.97,104V24z"/>
+                            <path d="M120,32c2.85,5.34,8,16.71,8,32c0,6.05-0.81,18.51-8,32"/>
+                            <path d="M110,40c2.03,2.7,8,11.38,8,24c0,3.38-0.43,13.9-8,24"/>
+                    </svg>
+                </div>
+                
+                <div id="volume_container" class="volume_container hidden">
+                    <div id="volume_variable" class="volume_variable"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="progress_bar">
+            <div class="time_bar cover_current_time">0:00</div>
+            <div class="progress_container">
+                <div class="progress"></div>
+            </div>
+            <div class="time_bar cover_time">0:00</div>
+        </div>
+    </div>
+
+    <div class="next_track">
+        <div class="queue">UP NEXT</div>
+        <div class="queue_title">title_next_track</div>
+    </div>
+</div>
+
+<div class="visual">
+    <canvas id="canvas_visual"></canvas>
+    <div class="visual_info_track">
+        <div class="visual_track_name"></div>
+        <div> – </div>
+        <div class="visual_track_author"></div>
+    </div>
+</div>

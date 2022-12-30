@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>authorization</title>
+    <link href="{% static 'music/style.css' %}" rel="stylesheet"/>
+</head>
+<body>
+    {% comment %}{% endcomment %}
+        <div class="block_panel">
+            <form action="" method="post">
+                {% csrf_token %}
+                <label for="username">Login</label>
+                <input type="text" name="username" id="username" autocomplete="off" required maxlenght='24'>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" autocomplete="off" required>
+                <input type="submit" value="Log in" class="button">
+            </form>
+            <p class="loginerr">{{ error }}</p>
+
+            <a href="{% url 'signupuser' %}" class="signup_link">Sign up</a>
+            
+        </div>
+</body>
+</html>

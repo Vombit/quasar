@@ -1,0 +1,21 @@
+{% load static %}
+<div class="content_page">
+    <div class="content_header">
+        <div class="content_sub_info">
+            <div class="content_sub_info_block">Автор: {{ author.displayName }}</div>
+            <div class="content_sub_info_block">Последнее изменение: {{ correction|date:"Y-m-d" }}</div>
+        </div>
+        <div class="content_info_block">
+            <img src="/media/{{ playlist_avatar }}" class="content_info_img">
+            <div class="content_type">Плейлист</div>
+            <div class="content_info_text">{{ name }}</div>
+        </div>
+    </div>
+    <div class="content_body">
+        <div class="tracks_array">
+            {% for item in tracks %}
+                {% include 'music/parts/track.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

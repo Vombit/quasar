@@ -1,0 +1,10 @@
+{% extends 'music/base.html' %}
+{% load static %}
+    {% block css %} 
+        <link href="{% static 'music/main.css' %}" rel="stylesheet"/>
+    {% endblock %} 
+
+
+    {% block content %}
+        {% include 'music/pages/favorite.html' %}
+    {% endblock %}

@@ -1,0 +1,35 @@
+{% load static %}
+<div class="track">
+    <div class="track_index">{{ forloop.counter }}</div>
+    <div class="track_img">
+        <img src="/media/{{ item.image }}">
+        <div class="track_play_btn" onclick="startPlayTracks('{{  item.url }}', '{{ type }}', '{{ id }}')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 128 128" class="icon">
+            <path d="M16,115c-0.55,0-1.1-0.15-1.58-0.45C13.54,114,13,113.04,13,112V16c0-1.04,0.54-2.01,1.42-2.55C14.9,13.15,15.45,13,16,13    c0.46,0,0.92,0.1,1.34,0.32l96,48c1.02,0.51,1.66,1.55,1.66,2.68c0,1.14-0.64,2.17-1.66,2.68l-96,48    C16.92,114.89,16.46,115,16,115z"></path>
+        </svg>
+        </div>
+    </div>
+    <div class="track_info">
+        <div class="track_name">{{ item.name }}</div>
+        <div class="dash_track">–</div>
+        <div class="track_author">
+            <a href="/artist/{{ item.artist.url }}" class="link">{{ item.artist }}</a>
+            
+            {% for sub in item.sub_artist.all %}
+                <span>,</span>
+                <a href="/artist/{{ sub.url }}" class="link">{{ sub }}</a>
+            {% endfor %}
+        </div>
+        <div class="track_type">{% if item.track_type %}({{ item.track_type }}){% endif %}</div>
+    </div>
+    <div class="album_track" title="{{ item.album }}">
+        <a href="/album/{{ item.album.url }}" class="link">{{ item.album }}</a>
+    </div>
+    <div class="total_audition" title="{{ item.auditions }}">{{ item.auditions }}</div>
+    <div class="favorite"  id="{{  item.url }}"  onclick="favTrack(this, '{{  item.url }}')"> 
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 42 42" class="icon">
+            <path d="M20.938,10.725C14.51,0.796,1.5,6.205,1.5,17.021c0,8.122,17.836,20.827,19.438,22.479  C22.551,37.848,39.5,25.143,39.5,17.021C39.5,6.287,27.378,0.796,20.938,10.725z"/>
+        </svg>
+    </div>
+    <div class="track_time">{{ item.track_time_min }}:{{ item.track_time_sec }}</div>
+</div>

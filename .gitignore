@@ -1,0 +1,6 @@
+media/
+zq/
+/db.sqlite3
+settings.py
+**/__pycache__
+**/migrations

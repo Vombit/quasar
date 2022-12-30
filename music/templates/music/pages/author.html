@@ -1,0 +1,43 @@
+{% load static %}
+<div class="content_page">
+    <div class="content_header">
+        <div class="content_sub_info">
+            {% for item in genres|slice:":6" %}
+                <div class="content_sub_info_block">{{ item }}</div>
+            {% endfor %}
+        </div>
+        <div class="content_info_block">
+            <img src="/media/{{ author_avatar }}" class="content_info_img">
+            <div class="content_type">{{ is_author }}</div>
+            <div class="content_info_text">{{ name }}</div>
+        </div>
+    </div>
+    <div class="content_body">
+            <div class="sub_title">
+                <h2>Популярные треки</h2>
+                <div class="view_all">ДРУГИЕ</div>
+            </div>
+            <div class="tracks_array">
+                {% for item in tracks|slice:":5" %}
+                    {% include 'music/parts/track.html' %}
+                {% endfor %}
+            </div>
+            <div class="sub_title">
+                <h2 class="profile_content_label">Альбомы</h2>
+                <div class="view_all">ДРУГИЕ</div>
+            </div>
+            <div class="content_body_container">
+                {% for item in albums|slice:":8" %}
+                    <div class="content_body_container_el">
+                        <img src="/media/{{ item.image }}" class="content_body_container_el_img">
+                        <h5 class="content_body_container_el_name" title="{{ item.name }}"><a href="/album/{{ item.url }}" class="link">{{ item.name }}</a></h5>
+                        <div class="content_body_container_el_sub">
+                            <div>{{ item.date_create|date:"Y" }}</div>
+                            <div class="separator">·</div>
+                            <div>{{ item.get_album_status_display }}</div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>

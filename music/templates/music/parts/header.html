@@ -1,0 +1,94 @@
+{% load static %}
+
+<div class="Header">
+    <div class="hdr_hdr_block">
+        <!-- <a href="/" class=""></a> -->
+        <a href="{% url 'recent' %}" class="link">Главная</a>
+    </div>
+    <form id="search_form" role="search" autocomplete="off">
+        {% csrf_token %}
+        <input id="search_input" class="search" maxlength="300" autocorrect="off" spellcheck="false" placeholder="Введите запрос" value="">
+    </form>
+    <div class="hdr_hdr_block">
+        <span class="menu_dropdown_profile">
+            <img src="/media/{{ user.avatar }}" onerror="this.src=`{% static 'music/images/empty.png' %}`">
+            <span>{{ user.displayName }}</span>
+        </span>
+        <div class="head_profile_sub hidden">
+            <a href="{% url 'me' %}" class="link">Профиль</a>
+            <a href="{% url 'preferences' %}" class="link">Настройки</a>
+
+            {% if request.user.is_staff %}
+                <hr>
+                <a href="/W8HldoTIbNRQ3Jrm/">Dashboard</a>
+            {% endif %}
+            
+            <hr>
+            <a href="{% url 'logoutuser' %}" class="">Выход</a>
+        </div>
+    </div>
+    <div id="result_box" class="result_box hidden">
+    </div>
+    <script>
+        $(".menu_dropdown_profile").click(function(){
+            $(".head_profile_sub").toggleClass("hidden");
+        });
+        $(document).mouseup(function (e) {
+            if ($(".menu_dropdown_profile").has(e.target).length === 0){    
+                $(".head_profile_sub").addClass("hidden");
+            }
+        })
+    </script>
+    <script>
+        let sendSearch = (data) => {
+            $.ajax({
+                type:'POST',
+                url:'{% url "search" %}',
+                data: {
+                    'csrfmiddlewaretoken':csrf,
+                    'data':data,
+                },
+                success: (res) => {
+                    let data = res.message
+                    result_box.innerHTML = "";
+                    if(Array.isArray(data)){
+                        result_box.innerHTML = "";
+                        data.forEach(data => {
+                            result_box.innerHTML += `
+                            <a href="/album/${data.url}" class="search_block link">
+                                <div class="search_sub_block">
+                                    ${data.name} - ${data.author}
+                                </div>
+                            </a>`
+                        });
+                    } else {
+                        if(search_input.value.length > 0){
+                            result_box.innerHTML = `<div class="search_sub_block_err">${data}</div>`
+                        } else {
+                            result_box.classList.add('hidden')
+                        }
+                    }
+                },
+                error: (err) => {
+                    // console.log(err);
+                }
+            })
+        }
+        let search_form = document.getElementById('search_form')
+        let search_input = document.getElementById('search_input')
+        let result_box = document.getElementById('result_box')
+        let csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+        search_input.addEventListener('keyup', e=>{
+            if (result_box.classList.contains('hidden')) {
+                result_box.classList.remove('hidden');
+            }
+            sendSearch(e.target.value)
+        });
+        $("#search_form").focusout(function() {
+            setTimeout(function () {
+                result_box.classList.add('hidden');
+            }, 100);
+        });
+    </script>
+</div>
+

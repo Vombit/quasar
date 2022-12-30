@@ -1,0 +1,19 @@
+{% load static %}
+<div class="content_page">
+    <div class="content_header">
+        <div class="content_sub_info">
+        </div>
+        <div class="content_info_block">
+            <img src="{% static 'music/images/like.png' %}" class="content_info_img">
+            <div class="content_type"></div>
+            <div class="content_info_text">Любимая музыка</div>
+        </div>
+    </div>
+    <div class="content_body">
+        <div class="tracks_array">
+            {% for item in tracks %}
+                {% include 'music/parts/track.html' %} 
+            {% endfor %}
+        </div>
+    </div>
+</div>

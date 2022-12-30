@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{% static 'music/images/icon.ico' %}">
+    <script src="{% static 'music/colorize.min.js' %}"></script>
+    <script src="{% static 'music/jquery.min.js' %}"></script>
+    <script src="{% static 'music/sm.js' %}"></script>
+    {% block css %} {% endblock %} 
+    <title>{{ title|title }}</title>
+</head>
+<body>
+    <div class="container">
+        {% include 'music/parts/header.html' %} 
+        <div class="Playlists box main_page">
+            <div class="playlists_container">
+                <h5 class="title_playlist">Your playlists</h5>
+                <div class="playlist_block">
+                    <a href="{% url 'favorite_music' %}" class="link">Favorite music</a>
+                </div>
+                {% for item in playlists %}
+                    <div class="playlist_block">
+                        <a href="/playlist/{{ item.url }}" class="link">{{ item.name }}</a>
+                    </div>
+                {% endfor %}
+                <hr><h5 class="title_playlist">Added playlists</h5>
+            </div>
+        </div>
+        <div id="main_page_elements" class="Sounds box main_page">
+            {% block content %} {% endblock %}
+        </div>
+        {% include 'music/parts/control.html' %}
+    </div>
+    <script src="{% static 'music/main.js' %}"></script>
+</body>
+</html>
