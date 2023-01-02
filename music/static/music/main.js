@@ -490,10 +490,11 @@ function context_menu_creator(e) {
 
 
     context.innerHTML = `
-        <div>Добавить в плейлист</div>
-        <div>Добавить в очередь</div>
-        <div>Похожее</div><hr>
-        <div>Поделиться</div>
+        <div class="test">Добавить в плейлист</div>
+        <div class="test">Добавить в очередь</div>
+        <div class="test">Похожее</div><hr>
+        <div class="test">Поделиться</div>
+        <div class="test report">report</div>
     `;
 
 

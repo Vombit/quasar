@@ -22,15 +22,7 @@
             </div>
             <div class="content_body_container">
                 {% for item in top_album %}
-                    <div class="content_body_container_el">
-                        <img src="/media/{{ item.image }}" class="content_body_container_el_img">
-                        <h5 class="content_body_container_el_name" title="{{ item.name }}"><a href="/album/{{ item.url }}" class="link">{{ item.name }}</a></h5>
-                        <div class="content_body_container_el_sub">
-                            <div>{{ item.date_album|date:"Y" }}</div>
-                            <div class="separator">·</div>
-                            <div>{{ item.get_album_status_display }}</div>
-                        </div>
-                    </div>
+                    {% include 'music/parts/album_view.html' %}
                 {% endfor %}
             </div>
 
@@ -73,15 +65,7 @@
             </div>
             <div class="content_body_container">
                 {% for item in albums %}
-                    <div class="content_body_container_el">
-                        <img src="/media/{{ item.image }}" class="content_body_container_el_img">
-                        <h5 class="content_body_container_el_name" title="{{ item.name }}"><a href="/album/{{ item.url }}" class="link">{{ item.name }}</a></h5>
-                        <div class="content_body_container_el_sub">
-                            <div>{{ item.date_album|date:"Y" }}</div>
-                            <div class="separator">·</div>
-                            <div>{{ item.get_album_status_display }}</div>
-                        </div>
-                    </div>
+                    {% include 'music/parts/album_view.html' %}
                 {% endfor %}
             </div>
 

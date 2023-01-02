@@ -129,7 +129,7 @@ a:hover {
     padding: 3px;
 }
 .head_profile_sub a:hover {
-    background-color: #333;
+    background: #333;
 }
 .hdr_hdr_block {
     min-width: 128px;
@@ -164,13 +164,46 @@ a:hover {
     left: 33%;
     top: 60px;
     border-radius: 12px;
-    padding: 8px;
+    padding: 5px;
     z-index: 10;
 }
+.result_box a:hover {
+    background: none!important;
+}
+.result_box .artist {
+    width: 120px;
+    margin:0px 15px;
+}
+.result_box .artist figure {
+    display: inline-block;
+    width: 120px;
+}
+.result_box .artist figure figcaption {
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+}
+.result_box .artist img {
+    margin: 0px 20px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+}
+.result_box .artist div {
+    margin: 0px auto;
+    text-align: center;
+    display:inline-block;
+}
+
 .search_sub_block_err {
     width: 95%;
     margin: 12px auto;
-    padding: 8px;
+    padding: 5px;
     border-radius: 8px;
     text-align: center;
 }
@@ -1067,11 +1100,18 @@ hr {
 }
 #context_menu div {
     border-radius: 5px;
-    margin: 0px auto;
+    margin: 2px auto;
     padding: 5px;
     text-align: center;
 }
 #context_menu div:hover {
     background-color: #333;
+}
+#context_menu div.report {
+    background-color: #500e0e;
+    font-size: 12px;
+}
+#context_menu div.test {
+    background-color: #000 !important;
 }
 /* /context_menu */

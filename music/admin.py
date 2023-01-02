@@ -43,7 +43,7 @@ class GenresMusicAdmin(admin.ModelAdmin):
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
-    list_display = ('name', 'is_author', 'url')
+    list_display = ('name', 'slug_name', 'is_author', 'url')
     fieldsets = (
         (None, {'fields': ('url', 'slug_name')}),
         (('Info'), {'fields': ('name', 'description', 'image', 'is_author', 'verification', 'genres')}),
@@ -77,7 +77,7 @@ class ArtistAlbumAdmin(admin.ModelAdmin):
 
 @admin.register(Music)
 class ArtistAlbumMusicAdmin(admin.ModelAdmin):
-    list_display = ('name', 'artist', 'album', 'auditions', 'track_time')
+    list_display = ('name', 'slug_name', 'artist', 'album', 'auditions', 'track_time')
     fieldsets = (
         (None, {'fields': ('url', 'slug_name')}),
         (('Info'), {'fields': ('name', 'artist', 'sub_artist', 'album', 'auditions')}),

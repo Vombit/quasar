@@ -11,6 +11,10 @@ from django.core import serializers
 from django.db.models import Q
 from .forms import UploadFileForm
 from music.models import *
+from transliterate import translit, detect_language
+import cutlet
+import re
+
 
 def user_data(user_name):
     user = UserNew.objects.get(username = user_name)
@@ -25,6 +29,19 @@ def get_favorite(user):
     my_favorite = FavoriteMusic.objects.filter(user=user)
     return my_favorite
 
+
+def slug_search(context):
+    katsu = cutlet.Cutlet()
+    katsu.ensure_ascii = False
+    katsu.use_foreign_spelling = False
+    text = katsu.romaji(context)
+
+    if not detect_language(text) == None:
+        context = re.sub("[^a-zA-Z0-9_ ]", "", translit(text, reversed=True).lower()).replace("  ", " ")
+    else:
+        context = re.sub("[^a-zA-Z0-9_ ]", "", text.lower()).replace("  ", " ")
+
+    return context
 
 
 
@@ -241,26 +258,49 @@ def get_liked(request):
 @login_required
 def search_result(request):
     if request.is_ajax():
-        res = None 
         series = request.POST.get('data')
-        author = Artist.objects.filter(name__icontains=series)
-        query = Music.objects.filter(Q(name__icontains=series) | Q(artist=author[0]))
+        post_msg = slug_search(series)
 
-        if len(query) > 0 and len(series) > 0:
-            data = []
-            for index, item in enumerate(query):
-                if index == 5: break
-                items = {
-                    'name': item.name,
-                    'author': item.artist.name,
-                    'url': item.album.url,
-                }
-                data.append(items)
-            res = data
-        else:
-            res = 'not found'
+        author = Artist.objects.filter(slug_name__icontains=post_msg)
+        authors = []
+        for index, item in enumerate(author):
+            if index == 4: break
+            items = {
+                'name': item.name,
+                'image': str(item.image),
+                'url': item.url,
+            }
+            authors.append(items)
 
-        return JsonResponse({'message':res})
+        album = Album.objects.filter(slug_name__icontains=post_msg)
+        albums = []
+        for index, item in enumerate(album):
+            if index == 5: break
+            items = {
+                'name': item.name,
+                'image': str(item.image),
+                'url': item.url,
+            }
+            albums.append(items)
+
+        track = Music.objects.filter(Q(slug_name__icontains=post_msg) | Q(artist__slug_name__icontains=author[0]))
+        tracks = []
+        for index, item in enumerate(track):
+            if index == 5: break
+            items = {
+                'name': item.name,
+                'author': item.artist.name,
+                'url': item.album.url,
+            }
+            tracks.append(items)
+
+        data = {
+            'authors': authors,
+            'albums': albums,
+            'tracks': tracks,
+        }
+
+        return JsonResponse({'message':data})
     return JsonResponse({})
 
 
@@ -305,8 +345,7 @@ def sync(request):
                 a_dict = ({
                         "id": item.tracks.url, 
                         "name": item.tracks.name, 
-                        "image": str(item.tracks.image), 
-                        # "audio_file": str(item.tracks.audio_file),
+                        "image": str(item.tracks.image),
                         "author": item.tracks.artist.name,
                         "author_url": item.tracks.artist.url
                     }, )
