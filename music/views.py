@@ -122,7 +122,7 @@ def author(request, author_id):
     author = get_object_or_404(Artist, url = author_id)
     tracks = Music.objects.filter(Q(artist=author.id) | Q(sub_artist=author.id)).distinct().order_by('-auditions')[:5]
     
-    albums = Album.objects.filter(artist = author.id)
+    albums = Album.objects.filter(artist = author.id).order_by('-date_album')
 
     context = {
         'title': f'artist - {author.name}',
@@ -148,6 +148,7 @@ def album(request, album_id):
     context = {
         'title': f'album - {album.name}',
         'album_avatar': album.image,
+        'album_date': album.date_album,
         'name': album.name,
         'album_status': album,
         'tracks': tracks,

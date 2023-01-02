@@ -54,6 +54,7 @@ a:hover {
     --progress_count: #777;
     --currentcolor: #777;
     --currentcolor_hover: #999;
+    --body-color: #222;
 }
 
 /* 
@@ -715,7 +716,7 @@ hr {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 25%;
+    width: fit-content;
     height: 36px;
     margin-left: 18px;
     margin-top: 12px;
@@ -767,6 +768,7 @@ hr {
     margin-top: 148px;
     width: 64px;
     color: var(--sub_color);
+    text-shadow: 0px 0px 3px #00000099;
     white-space: nowrap;
 }
 .content_body_container {
@@ -1053,3 +1055,23 @@ hr {
 .content_info_text, .track_name, .track_author a, .album_track a, .cover_name, .cover_author a, .track_type {
     user-select:text;
 }
+
+/* context_menu */
+#context_menu {
+    box-shadow: 0px 0px 2px 2px #88888811;
+    background-color: var(--body-color);
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+#context_menu div {
+    border-radius: 5px;
+    margin: 0px auto;
+    padding: 5px;
+    text-align: center;
+}
+#context_menu div:hover {
+    background-color: #333;
+}
+/* /context_menu */

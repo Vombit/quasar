@@ -430,7 +430,6 @@ function loadSong(song) {
         autoLoad: true,
         multiShot: false, 
         volume: volumes*100,
-        // whileloading: function() { 
         onload: function() { 
             mySMSound = soundManager.getSoundById('track_main');
         }
@@ -461,29 +460,61 @@ function updateIndex(e) {
 var array_data;
 var volumes;
 function loadData() {
-    $.get("/music/sync/", function(e) {
-        array_data = e.message
-        array_tracks = array_data.playlist
-        volumes = array_data.curvol
-        updateIndex(array_data.track)
-
-        cover_time.innerHTML = trackTime(soundManager.onPosition('track_main').duration/1000)
-        $("#volume_variable").height($("#volume_container").height()*volumes/0.2);
-        
-    })
+    return new Promise(function(resolve){
+        $.get("/music/sync/", function(e) {
+            array_data = e.message
+            array_tracks = array_data.playlist
+            volumes = array_data.curvol
+            updateIndex(array_data.track)
+            cover_time.innerHTML = trackTime(soundManager.onPosition('track_main').duration/1000)
+            $("#volume_variable").height($("#volume_container").height()*volumes/0.2);
+            resolve();
+        })
+    });
 }
 function startPlayTracks(track, type, id) {
     array_tracks = [];
     $.post( "/music/sync/", {csrfmiddlewaretoken: csrf, type:type, id:id, track:track })
         .done(function() {
-            loadData()
+            loadData().then(playSong)
         });
-        setTimeout(e => {
-            playSong()
-        }, 500)
 }
 
 
-document.addEventListener( "contextmenu", function(e) {
-    console.log(e);
+
+
+function context_menu_creator(e) {
+    var context = document.createElement('div');
+    context.id = "context_menu";
+    console.log(e)
+
+
+    context.innerHTML = `
+        <div>Добавить в плейлист</div>
+        <div>Добавить в очередь</div>
+        <div>Похожее</div><hr>
+        <div>Поделиться</div>
+    `;
+
+
+    context.style.top = e.y + 'px';
+    context.style.left = e.x + 'px';
+    document.getElementsByTagName("body")[0].appendChild(context);
+}
+
+document.addEventListener("contextmenu", function(e) {
+    if (e.target.parentElement.className == 'track') {
+        if (!document.getElementById("context_menu")) {
+            context_menu_creator(e)
+        } else {
+            document.getElementById("context_menu").remove();
+            context_menu_creator(e)
+        }
+    }
+    window.event.returnValue = false;
+}, false);
+$(document).bind("click", function(e) {
+    if (e.target.id != "context_menu" && document.getElementById("context_menu")) {
+        document.getElementById("context_menu").remove();
+    }
 });
