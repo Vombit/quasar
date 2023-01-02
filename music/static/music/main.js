@@ -222,7 +222,7 @@ function equalizer() {
 
     canvas_color = fac.getColor(cover);
     var radius = 139;
-    var sticks = 164;
+    var sticks = 124;
     var sticksWidth = 3;
 
     base_image.src = $(cover).attr('src');
@@ -482,3 +482,8 @@ function startPlayTracks(track, type, id) {
             playSong()
         }, 500)
 }
+
+
+document.addEventListener( "contextmenu", function(e) {
+    console.log(e);
+});
