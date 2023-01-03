@@ -292,6 +292,7 @@ def search_result(request):
                     'name': item.name,
                     'author': item.artist.name,
                     'url': item.album.url,
+                    'image': str(item.image),
                 }
                 tracks.append(items)
 
