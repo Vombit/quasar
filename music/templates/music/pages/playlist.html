@@ -6,7 +6,7 @@
             <div class="content_sub_info_block">Последнее изменение: {{ correction|date:"Y-m-d" }}</div>
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ playlist_avatar }}" class="content_info_img">
+            <img src="/media/{{ playlist_avatar }}" class="content_info_img" onerror="imgError(this);">
             <div class="content_type">Плейлист</div>
             <div class="content_info_text">{{ name }}</div>
         </div>

@@ -47,16 +47,28 @@
                 },
                 success: (res) => {
                     var authors = res.message.authors
-                    let tracks = res.message.tracks
+                    var albums = res.message.albums
+                    var tracks = res.message.tracks
                     result_box.innerHTML = "";
                     if(Array.isArray(tracks)){
                         result_box.innerHTML = "";
+                        result_box.innerHTML += `<div>Авторы</div>`
                         authors.forEach(authors => {
                             result_box.innerHTML += `
-                                <a href="/artist/${authors.url}" class="search_block link artist"> 
+                                <a href="/artist/${authors.url}" class="search_block link block author"> 
                                     <figure>
-                                        <img src="/media/${authors.image}">
+                                        <img src="/media/${authors.image}" onerror="imgError(this);">
                                         <figcaption title="${authors.name}">${authors.name}</figcaption>
+                                    </figure>
+                                </a>`
+                        });
+                        result_box.innerHTML += `<div>Альбомы</div>`
+                        albums.forEach(albums => {
+                            result_box.innerHTML += `
+                                <a href="/album/${albums.url}" class="search_block link block album"> 
+                                    <figure>
+                                        <img src="/media/${albums.image}" onerror="imgError(this);">
+                                        <figcaption title="${albums.name}">${albums.name}</figcaption>
                                     </figure>
                                 </a>`
                         });

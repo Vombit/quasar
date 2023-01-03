@@ -158,10 +158,10 @@ a:hover {
     border: none;
 }
 .result_box {
-    width: 33%;
-    background-color: #00000055;
+    width: 640px;
+    background-color: #000000dd;
     position: absolute;
-    left: 33%;
+    left: calc(50% - 320px);
     top: 60px;
     border-radius: 12px;
     padding: 5px;
@@ -170,15 +170,19 @@ a:hover {
 .result_box a:hover {
     background: none!important;
 }
-.result_box .artist {
+.result_box .block {
     width: 120px;
-    margin:0px 15px;
 }
-.result_box .artist figure {
+.result_box div {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+}
+.result_box .block figure {
     display: inline-block;
     width: 120px;
 }
-.result_box .artist figure figcaption {
+.result_box .block figure figcaption {
     width: 100%;
     text-align: center;
     white-space: nowrap;
@@ -186,15 +190,23 @@ a:hover {
     text-overflow: ellipsis;
     font-size: 14px;
 }
-.result_box .artist img {
+.result_box .block.author img {
     margin: 0px 20px;
     height: 80px;
     width: 80px;
     border-radius: 50%;
     object-fit: cover;
-    margin-top: 10px;
+    margin-top: 5px;
 }
-.result_box .artist div {
+.result_box .block.album img {
+    margin: 0px 20px;
+    height: 80px;
+    width: 80px;
+    border-radius: 20%;
+    object-fit: cover;
+    margin-top: 5px;
+}
+.result_box .block div {
     margin: 0px auto;
     text-align: center;
     display:inline-block;
@@ -827,6 +839,34 @@ hr {
     margin-bottom: 4px;
     object-fit: cover;
 }
+.content_body_container_el_artist {
+    width: 164px;
+    object-fit: cover;
+}
+.content_body_container_el_artist figure {
+    width: 100%;
+}
+.content_body_container_el_artist figure figcaption {
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.content_body_container_el_artist figure img {
+    margin: 0px 5px;
+    height: 154px;
+    width: 154px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 1);
+}
+
+
+
+
 .content_body_container_el_name {
     width: 100%;
     text-align: center;

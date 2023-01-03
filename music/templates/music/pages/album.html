@@ -5,7 +5,7 @@
             <div class="content_sub_info_block">{{ album_date|date:"Y" }}</div>
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ album_avatar }}" class="content_info_img">
+            <img src="/media/{{ album_avatar }}" class="content_info_img" onerror="imgError(this);">
             <div class="content_type">{{ album_status.get_album_status_display }}</div>
             <div class="content_info_text">{{ name }}</div>
         </div>

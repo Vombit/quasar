@@ -259,49 +259,50 @@ def get_liked(request):
 def search_result(request):
     if request.is_ajax():
         series = request.POST.get('data')
-        post_msg = slug_search(series)
+        if len(series) > 1:
+            post_msg = slug_search(series)
 
-        author = Artist.objects.filter(slug_name__icontains=post_msg)
-        authors = []
-        for index, item in enumerate(author):
-            if index == 4: break
-            items = {
-                'name': item.name,
-                'image': str(item.image),
-                'url': item.url,
+            author = Artist.objects.filter(slug_name__icontains=post_msg)
+            authors = []
+            for index, item in enumerate(author):
+                if index == 5: break
+                items = {
+                    'name': item.name,
+                    'image': str(item.image),
+                    'url': item.url,
+                }
+                authors.append(items)
+
+            album = Album.objects.filter(slug_name__icontains=post_msg)
+            albums = []
+            for index, item in enumerate(album):
+                if index == 5: break
+                items = {
+                    'name': item.name,
+                    'image': str(item.image),
+                    'url': item.url,
+                }
+                albums.append(items)
+
+            track = Music.objects.filter(Q(slug_name__icontains=post_msg) | Q(artist__slug_name__icontains=author[0]))
+            tracks = []
+            for index, item in enumerate(track):
+                if index == 5: break
+                items = {
+                    'name': item.name,
+                    'author': item.artist.name,
+                    'url': item.album.url,
+                }
+                tracks.append(items)
+
+            data = {
+                'authors': authors,
+                'albums': albums,
+                'tracks': tracks,
             }
-            authors.append(items)
 
-        album = Album.objects.filter(slug_name__icontains=post_msg)
-        albums = []
-        for index, item in enumerate(album):
-            if index == 5: break
-            items = {
-                'name': item.name,
-                'image': str(item.image),
-                'url': item.url,
-            }
-            albums.append(items)
-
-        track = Music.objects.filter(Q(slug_name__icontains=post_msg) | Q(artist__slug_name__icontains=author[0]))
-        tracks = []
-        for index, item in enumerate(track):
-            if index == 5: break
-            items = {
-                'name': item.name,
-                'author': item.artist.name,
-                'url': item.album.url,
-            }
-            tracks.append(items)
-
-        data = {
-            'authors': authors,
-            'albums': albums,
-            'tracks': tracks,
-        }
-
-        return JsonResponse({'message':data})
-    return JsonResponse({})
+            return JsonResponse({'message':data})
+    return JsonResponse({'message':'not found'})
 
 
 @login_required

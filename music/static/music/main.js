@@ -312,9 +312,10 @@ $(document).ready(function() {
 
 
 
-
-
-
+function imgError(image) {
+    image.src = "/static/music/images/empty.png";
+    return true;
+}
 
 
 

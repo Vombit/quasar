@@ -7,7 +7,7 @@
             {% endfor %}
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ author_avatar }}" class="content_info_img">
+            <img src="/media/{{ author_avatar }}" class="content_info_img" onerror="imgError(this);">
             <div class="content_type">{{ is_author }}</div>
             <div class="content_info_text">{{ name }}</div>
         </div>

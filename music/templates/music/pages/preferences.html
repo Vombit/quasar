@@ -7,7 +7,7 @@
         <div class="fields">
             <div class="field preferences_avatar">
                 <label for="avatar" class="item">Avatar</label>
-                <img src="/media/{{ user.avatar }}" class="item" onerror="this.src=`{% static 'music/images/empty.png' %}` ">
+                <img src="/media/{{ user.avatar }}" class="item" onerror="imgError(this);">
                 <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar" class="input-file">
                 <label for="avatar" class="item btn_upload modified-label">
                     <span class="js-fileName">Загрузить файл</span>
