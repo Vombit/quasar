@@ -257,7 +257,7 @@ def get_liked(request):
 
 @login_required
 def search_result(request):
-    if request.is_ajax():
+    if request.method == 'POST':
         series = request.POST.get('data')
         if len(series) > 1:
             post_msg = slug_search(series)
