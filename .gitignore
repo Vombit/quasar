@@ -4,3 +4,4 @@ zq/
 settings.py
 **/__pycache__
 **/migrations
+env/
