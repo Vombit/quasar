@@ -197,7 +197,7 @@ class Playlist(models.Model):
     image = models.ImageField(upload_to=upload_to("user/playlist"), blank=True, null=True)
     name = models.CharField(max_length=32)
     opened = models.BooleanField(default=True)
-    correction = models.DateTimeField(null=True)
+    correction = models.DateTimeField(auto_now=True)
     tracks = models.ManyToManyField(Music)
     author = models.ForeignKey(UserNew, on_delete = models.SET_NULL, null = True)
     quantity = models.PositiveIntegerField(default=0)

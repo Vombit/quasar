@@ -100,7 +100,7 @@ class PlaylistAdmin(admin.ModelAdmin):
         (('Info'), {'fields': ('name', 'author', 'image', 'correction', 'opened')}),
         (('data'), {'fields': ('tracks', 'quantity')}),
     )
-    readonly_fields = ('url', 'quantity')
+    readonly_fields = ('url', 'quantity', 'correction')
     search_fields = ('name', 'author__name')
 
 

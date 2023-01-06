@@ -440,10 +440,34 @@ def protected_media(request, filename):
 
 
 
-@login_required
-def add_to_playlist(request, playlist_id, track_id):
-    print(playlist_id, track_id)
 
-    
+@login_required
+def create_playlist(request, playlist_name):
+    if Playlist.objects.filter(author=request.user, name=playlist_name).first():
+        return HttpResponse('already have a playlist with this name')
+    if request.method == 'GET':
+        Playlist.objects.create(author=request.user, name=playlist_name)
+
 
     return HttpResponse(True)
+
+
+
+
+@login_required
+def add_remove_playlist(request, playlist_id, track_id):
+    playlist = get_object_or_404(Playlist, url = playlist_id)
+    track = Music.objects.filter(url = track_id)
+
+    if request.user == playlist.author:
+        if not playlist.tracks.filter(url = track_id):
+            playlist.tracks.add(*track)
+            playlist.save()
+            return  HttpResponse(True)
+
+        elif playlist.tracks.filter(url = track_id):
+            playlist.tracks.remove(*track)
+            playlist.save()
+            return  HttpResponse(True)
+
+    return HttpResponse(False)
