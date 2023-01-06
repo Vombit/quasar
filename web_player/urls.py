@@ -28,6 +28,7 @@ urlpatterns = [
     path('playlist/<playlist_id>', views.playlist, name='playlist'),
 
     path('application/manage/<track_id>&<classname>', views.manage_track_user, name='manage_track_user'),
+    path('application/manage/playlist/<playlist_id>&<track_id>', views.add_to_playlist, name='add_to_playlist'),
 
 
     path('music/get_favorite', views.get_liked, name='get_liked'),
