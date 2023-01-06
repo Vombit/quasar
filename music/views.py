@@ -436,3 +436,14 @@ def protected_media(request, filename):
     response.status_code = 206
 
     return response
+
+
+
+
+@login_required
+def add_to_playlist(request, playlist_id, track_id):
+    print(playlist_id, track_id)
+
+    
+
+    return HttpResponse(True)
