@@ -528,12 +528,15 @@ function create_playlist() {
     context.innerHTML = `
         <h3>Создание плейлиста</h3>
         <form action="" method="post" enctype="multipart/form-data">
-            <input type="file" accept="image/png, image/jpeg">
-
-            <label for="playlist_name" class="item">Отображаемое имя</label>
-            <input type="text" name="playlist_name" id="playlist_name" autocomplete="off" required maxlenght='24' value="playlist">
-
-            <input type="submit" value="Создать">
+            <div class='img_playlist inl_block'>
+                <img src="#" id="img_playlist" onerror="imgError(this);">
+                <input type="file" accept="image/png, image/jpeg" id="imgload">
+            </div>
+            <div class='name_playlist inl_block'>
+                <label for="playlist_name" class='playlist_name_lable'>Название:</label>
+                <input type="text" name="playlist_name" id="playlist_name" class='playlist_name' autocomplete="off" required maxlenght='32' value="playlist">
+            </div>
+            <input type="submit" value="Создать" class='button'>
         </form>
     `;
 
@@ -542,4 +545,14 @@ function create_playlist() {
 
 $('.create_playlist').bind("click", function(e) {
     create_playlist()
+
+    $("#imgload").change(function () {
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#img_playlist').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(this.files[0]);
+        }
+    });
 });

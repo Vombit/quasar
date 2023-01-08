@@ -348,7 +348,6 @@ div.preferences_genres {
     border-radius: 8px;
     color: black;
     margin-top: 64px;
-
     position: absolute;
     left: calc(50% - 64px);
 }
@@ -653,10 +652,55 @@ canvas {
     background-color: #000;
     border-radius: 8px;
     padding: 8px;
+    box-shadow: 0px 0px 3px 2px #111;
 }
-.playlist_creator {
-    
+.playlist_creator h3 { 
+    text-align: center;
 }
+.playlist_creator form {
+    margin-top: 10px;
+}
+.playlist_creator .inl_block {
+    display: inline-grid;
+}
+.playlist_creator .inl_block #img_playlist {
+    height: 128px;
+    width: 128px;
+    object-fit: cover;
+}
+
+
+.playlist_creator .inl_block .playlist_name_lable {
+    text-align: center;
+    font-size: 16px;
+}
+.playlist_creator .inl_block .playlist_name {
+    text-align: center;
+    border-radius: 8px;
+    background-color: #222;
+    height: 24px;
+    width: 200px;
+    border: none;
+}
+
+
+
+.playlist_creator form .button {
+    background-color: #fc6666;
+    height:32px;
+    width: 96px;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: black;
+    margin: 0px auto;
+    margin-top: 32px;
+    display: block;
+
+}
+.playlist_creator form .button:hover {
+    background-color: #b44444;
+}
+
 /* /playlist creator */
 hr {
     border: none;
