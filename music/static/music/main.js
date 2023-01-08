@@ -487,7 +487,6 @@ function startPlayTracks(track, type, id) {
 function context_menu_creator(e) {
     var context = document.createElement('div');
     context.id = "context_menu";
-    console.log(e)
 
 
     context.innerHTML = `
@@ -519,4 +518,28 @@ $(document).bind("click", function(e) {
     if (e.target.id != "context_menu" && document.getElementById("context_menu")) {
         document.getElementById("context_menu").remove();
     }
+});
+
+
+
+function create_playlist() {
+    var context = document.createElement('div');
+    context.className = "playlist_creator";
+    context.innerHTML = `
+        <h3>Создание плейлиста</h3>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" accept="image/png, image/jpeg">
+
+            <label for="playlist_name" class="item">Отображаемое имя</label>
+            <input type="text" name="playlist_name" id="playlist_name" autocomplete="off" required maxlenght='24' value="playlist">
+
+            <input type="submit" value="Создать">
+        </form>
+    `;
+
+    document.getElementsByTagName("body")[0].appendChild(context);
+}
+
+$('.create_playlist').bind("click", function(e) {
+    create_playlist()
 });

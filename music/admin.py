@@ -40,6 +40,7 @@ class UserMusicSetting(admin.ModelAdmin):
 @admin.register(GenresMusic)
 class GenresMusicAdmin(admin.ModelAdmin):
     list_display = ('name',)
+    search_fields = ('name',)
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
@@ -49,7 +50,7 @@ class ArtistAdmin(admin.ModelAdmin):
         (('Info'), {'fields': ('name', 'description', 'image', 'is_author', 'verification', 'genres')}),
     )
     readonly_fields = ('url', 'slug_name')
-    search_fields = ('name', 'is_author', 'genres__name')
+    search_fields = ('name', 'is_author', 'genres__name', 'slug_name')
     inlines = (AlbumAdminInline,)
 
 @admin.register(Album)
@@ -60,7 +61,7 @@ class ArtistAlbumAdmin(admin.ModelAdmin):
         (('Info'), {'fields': ('name', 'artist', 'image', 'date_album', 'album_status')}),
     )
     readonly_fields = ('url', 'slug_name')
-    search_fields = ('name', 'artist__name')
+    search_fields = ('name', 'artist__name', 'slug_name')
     inlines = (MusicAdminInline,)
 
     def save_formset(self, request, form, formset, change):
@@ -84,7 +85,7 @@ class ArtistAlbumMusicAdmin(admin.ModelAdmin):
         (('Data'), {'fields': ('genres', 'track_type', 'image', 'audio_file', 'track_time')}),
     )
     readonly_fields = ('url', 'auditions', 'track_time', 'slug_name')
-    search_fields = ('name', 'album__name', 'artist__name')
+    search_fields = ('name', 'album__name', 'artist__name', 'slug_name')
     
     def save_model(self, request, obj, form, change):
         if getattr(obj, 'who_added', None) is None:

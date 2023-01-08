@@ -45,8 +45,6 @@ a:hover {
     background-size: 100% 1px;
     background-repeat: repeat-x;
 }
-
-
 :root {
     --titles: #efeff0;
     --sub_color: #89798e;
@@ -56,23 +54,6 @@ a:hover {
     --currentcolor_hover: #999;
     --body-color: #222;
 }
-
-/* 
-#5aacac
-
-
-
-
-*/
-
-/* [class^="box-"] {
-    background-color: skyblue;
-    
-    
-    display: grid;
-    place-items: center;
-    border-radius: 8px;
-} */
 .box {
     background-color: #222;
     
@@ -80,8 +61,6 @@ a:hover {
     place-items: center;
     border-radius: 8px;
 }
-
-
 .container {
     margin: 0 8px;
     display: grid;
@@ -94,8 +73,6 @@ a:hover {
     grid-template-rows: 48px auto 85px;
     grid-template-columns: 256px auto;
 }
-
-
 /* Header */
 .Header {
     grid-area: Header;
@@ -206,7 +183,6 @@ a:hover {
     object-fit: cover;
     margin-top: 5px;
 }
-
 .result_box .block.search_track{
     width: 90%;
     height: 56px;
@@ -240,11 +216,6 @@ a:hover {
     display: none!important;
 }
 /* /Header */
-
-
-
-
-
 /* Preferences */
 .preferences_page {
     width: 100%;
@@ -346,7 +317,6 @@ div.preferences_genres {
     border-radius:5px;
     min-height:24px;
 }
-
 .select_genres option {
     display: block;
     padding: 8px 16px;
@@ -368,7 +338,6 @@ div.preferences_genres {
     border-radius: 8px;
     margin-right: 9px;
     margin-bottom: 10px;
-    /* color: #111; */
 }
 .preferences_profile .button {
     grid-area: bnt_save;
@@ -387,11 +356,6 @@ div.preferences_genres {
     background-color: #b44444;
 }
 /* /Preferences */
-
-
-
-
-
 /* visual */
 .visual {
     position: absolute;
@@ -426,38 +390,12 @@ canvas {
     border-radius: 50%;
 }
 /* /visual */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .Playlists {
     grid-area: Playlists;
 }
 .Sounds {
     grid-area: Sounds;
 }
-
-
-
-
-
-
 /* control_panel */
 .Controls {
     grid-area: Controls;
@@ -539,10 +477,6 @@ canvas {
     cursor: pointer;
     margin: 10px 10px;
 }
-
-
-
-
 .progress_bar {
     grid-area: progress_bar;
     width: 100%;
@@ -571,11 +505,9 @@ canvas {
     height: 4px;
     pointer-events: none;
 }
-
 .sound_bar, .liked_bar{
     position: relative;
 } 
-
 .volume_container {
     position: absolute;
     bottom: 110%;
@@ -595,7 +527,6 @@ canvas {
     width: 5px;
     pointer-events: none;
 }
-
 /* /control_panel */
 .icon {
     fill:var(--currentcolor);
@@ -608,17 +539,6 @@ canvas {
     fill:var(--currentcolor_hover);
     stroke:var(--currentcolor_hover);
 }
-
-
-
-
-
-
-
-
-
-
-
 .main_page {
     overflow: hidden;
 }
@@ -630,19 +550,12 @@ canvas {
     overflow: overlay;
     overflow-x: hidden;
 }
-
-/* .profile_header {
-    background-color: rgb(42, 146, 141);
-    display: grid;
-    grid-template-columns: 40% auto;
-} */
 .profile_body {
     background-color: #222;
     border-radius: 16px;
     margin-top: -16px;
     padding: 0 32px;
     padding-top: 108px;
-
 }
 .info_user {
     display: flex;
@@ -677,7 +590,6 @@ canvas {
     height: auto;
     margin-bottom: 48px;
 }
-
 .profile_content .content_container {
     padding-top: 10px;
     width: 100%;
@@ -685,7 +597,6 @@ canvas {
     grid-template-columns: repeat(8, 1fr);
 
 }
-
 .profile_content .content_container .content_block {
     background-color: #000;
     width: 164px;
@@ -694,25 +605,12 @@ canvas {
     overflow: hidden;
     border: 5px solid #000;
 }
-
-
-
-
-
-
-
-
-
 .btns_clr {
     fill: #777;
 }
 .btns_clr:hover {
     fill: #89798e;
 }
-
-
-
-
 /* Playlists */
 .playlists_container {
     width: 100%;
@@ -735,6 +633,31 @@ canvas {
     width: 90%;
     text-align: center;
 }
+.title_playlist .create_playlist {
+    width: 24px;
+    margin-right: -24px;
+    display: inline-block;
+    padding: 1px;
+}
+.title_playlist .create_playlist:hover {
+    text-shadow: 0px 0px 2px var(--sub_color_light);
+}
+/* playlist creator */
+.playlist_creator {
+    width: 512px;
+    height:fit-content;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #000;
+    border-radius: 8px;
+    padding: 8px;
+}
+.playlist_creator {
+    
+}
+/* /playlist creator */
 hr {
     border: none;
     border-top: 1px solid #373737;
@@ -867,11 +790,8 @@ hr {
     border-radius: 50%;
     object-fit: cover;
     box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 1);
+    background-color: #000;
 }
-
-
-
-
 .content_body_container_el_name {
     width: 100%;
     text-align: center;
@@ -897,7 +817,6 @@ hr {
     margin: 0px 3px;
     font-weight: bold;
 }
-
 @media (max-width: 1700px) {
     .content_body_container_el:nth-child(8) {
         display: none;
@@ -940,8 +859,6 @@ hr {
 }
 /* /content */
 
-
-
 /* Author */
 .tracks_array {
     display: flex;
@@ -961,12 +878,6 @@ hr {
     line-height: 25px;
     margin: 5px 0;
 }
-
-
-
-
-
-
 .track {
     width: 95%;
     background-color: #000;
@@ -994,7 +905,6 @@ hr {
     margin: 0 4px;
     color: #89798e;
 }
-
 .track_type {
     margin: 0 12px;
     font-size: 12px;
@@ -1015,13 +925,10 @@ hr {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
 }
-
 .track_time {
     text-align:end;
 }
-
 .track_info {
     display: flex;
     flex: 1 1 100%;
@@ -1029,8 +936,6 @@ hr {
     flex-wrap: nowrap;
     justify-content:start;
 }
-
-
 .track:hover {
     background-color: #111;
     box-shadow: 0px 0px 24px -12px rgba(0, 0, 0, 1);
@@ -1041,7 +946,6 @@ hr {
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
 .track .track_img img {
     width: 46px;
     height: 46px;
@@ -1050,7 +954,6 @@ hr {
     z-index: 0;
     object-fit: cover;
 }
-
 .track .track_img .track_play_btn{
     display: none;
     position: relative;
@@ -1071,7 +974,6 @@ hr {
 .track .track_img:hover .track_play_btn {
     display: block;
 }
-
 .favorite .icon {
     width: 24px;
     height: 24px;
@@ -1090,30 +992,10 @@ hr {
     stroke:var(--currentcolor);
     stroke-width:8;
 }
-
-
 .liked .liked {
     stroke: #b6074a;
     fill: #b6074a;
 }
-
-
-
-/* .manage_author {
-    position: relative;
-    align-self: center;
-    margin-top: 172px;
-    margin-left: 22px;
-    border: none;
-    background-color: transparent;
-    
-} */
-
-
-
-
-
-
 .btn_active {
     stroke: var(--sub_color_light);
 }
@@ -1128,12 +1010,9 @@ hr {
     stroke: var(--sub_color_light);
     fill:  var(--sub_color_light);
 }
-
-
 .content_info_text, .track_name, .track_author a, .album_track a, .cover_name, .cover_author a, .track_type {
     user-select:text;
 }
-
 /* context_menu */
 #context_menu {
     box-shadow: 0px 0px 2px 2px #88888811;
