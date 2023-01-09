@@ -482,22 +482,37 @@ function startPlayTracks(track, type, id) {
 }
 
 
+function addremove_playlist(trk_id) {
+    var voidd;
+    $.ajax({
+        type:'GET',
+        url:'/application/manage/playlist',
+        success: (res) => {
+            document.getElementsByTagName("body")[0].innerHTML += res;
 
+            $('#get_playlists').bind("click", function(e) {
+                $.get(`/application/manage/playlist/${e['target'].getAttribute('id')}&${trk_id}`)
+                .done(function() {
+                    document.getElementById("get_playlists").remove();
+                });
+            })
+        }
+    })
+
+
+    // 
+}
 
 function context_menu_creator(e) {
     var context = document.createElement('div');
     context.id = "context_menu";
-
-
     context.innerHTML = `
-        <div class="test">Добавить в плейлист</div>
-        <div class="test">Добавить в очередь</div>
-        <div class="test">Похожее</div><hr>
-        <div class="test">Поделиться</div>
-        <div class="test report">report</div>
+        <div id="add_to_playlist" onclick="addremove_playlist('${e.target.parentElement.getElementsByClassName('favorite')[0].getAttribute('id')}')">Добавить(удалить) в плейлист</div>
+        <div class="btn_context">Добавить в очередь</div>
+        <div class="btn_context">Похожее</div><hr>
+        <div class="btn_context">Поделиться</div>
+        <div class="btn_context report">report</div>
     `;
-
-
     context.style.top = e.y + 'px';
     context.style.left = e.x + 'px';
     document.getElementsByTagName("body")[0].appendChild(context);
@@ -520,25 +535,17 @@ $(document).bind("click", function(e) {
     }
 });
 
-
-
 function create_playlist() {
-    var context = document.createElement('div');
-    context.className = "playlist_creator";
-    context.innerHTML = `
-        <h3>Создание плейлиста</h3>
-        <form action="/application/manage/playlist/create&" method="get" enctype="multipart/form-data">
-            <div class='name_playlist inl_block'>
-                <label for="playlist_name" class='playlist_name_lable'>Название:</label>
-                <input type="text" name="playlist_name" id="playlist_name" class='playlist_name' autocomplete="off" required maxlenght='32' value="playlist">
-            </div>
-            <input type="submit" value="Создать" class='button'>
-        </form>
-    `;
-
-    document.getElementsByTagName("body")[0].appendChild(context);
+    $.ajax({
+        type:'GET',
+        url:'/application/manage/playlist/create',
+        success: (res) => {
+            document.getElementsByTagName("body")[0].innerHTML += res;
+            $(document).bind("click", function(e) {
+                if ($(e.target.offsetParent).attr('class') != "playlist_creator" && document.getElementsByClassName("playlist_creator")[0]) {
+                    document.getElementsByClassName("playlist_creator")[0].remove();
+                }
+            });
+        }
+    })
 }
-
-$('.create_playlist').bind("click", function(e) {
-    create_playlist()
-});

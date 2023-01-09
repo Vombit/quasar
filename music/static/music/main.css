@@ -662,9 +662,18 @@ canvas {
 }
 .playlist_creator .inl_block {
     margin: 0 auto;
+    text-align: center;
 }
-
-
+#get_playlists .block {
+    background-color: #111;
+    margin: 5px auto;
+    padding: 5px;
+    text-align: center;
+    border-radius: 8px;
+}
+#get_playlists .block:hover {
+    background-color: #222;
+}
 
 .playlist_creator .inl_block .playlist_name_lable {
     text-align: center;
@@ -677,6 +686,8 @@ canvas {
     height: 24px;
     width: 200px;
     border: none;
+    display: block;
+    margin: 0 auto;
 }
 
 
@@ -1075,7 +1086,7 @@ hr {
     background-color: #500e0e;
     font-size: 12px;
 }
-#context_menu div.test {
+#context_menu div.btn_context {
     background-color: #000 !important;
 }
 /* /context_menu */

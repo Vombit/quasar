@@ -1,0 +1,12 @@
+{% load static %}
+<div class="playlist_creator" id="playlist_creator">
+    <h3>Создание плейлиста</h3>
+    <form action="/application/manage/playlist/create" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class='name_playlist inl_block'>
+            <label for="playlist_name" class='playlist_name_lable'>Название:</label>
+            <input type="text" name="playlist_name" id="playlist_name" class='playlist_name' autocomplete="off" required maxlenght='32' value="playlist">
+        </div>
+        <input type="submit" value="Создать" class='button'>
+    </form>
+</div>

@@ -1,0 +1,7 @@
+{% load static %}
+<div class="playlist_creator" id="get_playlists">
+    <h3>Выбрать плейлист</h3>
+    {% for item in playlists %}
+        <div class="block" id="{{ item.url }}">{{ item.name }}</div>
+    {% endfor %}
+</div>

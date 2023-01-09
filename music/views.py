@@ -441,16 +441,26 @@ def protected_media(request, filename):
 
 
 
+
 @login_required
-def create_playlist(request, playlist_name):
-    if Playlist.objects.filter(author=request.user, name=playlist_name).first():
-        return HttpResponse('already have a playlist with this name')
+def get_playlist(request):
+    playlist = Playlist.objects.filter(author = request.user)
+    context = {
+        'playlists': playlist
+    }
+    return HttpResponse(render(request, 'music/parts/get_playlists.html', context))
+
+@login_required
+def create_playlist(request):
     if request.method == 'GET':
-        Playlist.objects.create(author=request.user, name=playlist_name)
+        return HttpResponse(render(request, 'music/parts/playlist_creator.html'))
+    if Playlist.objects.filter(author=request.user, name=request.POST['playlist_name']).first():
+        return HttpResponse('already have a playlist with this name')
+    else:
+        Playlist.objects.create(author=request.user, name=request.POST['playlist_name'])
 
-
-    return HttpResponse(True)
-
+        playlist = Playlist.objects.get(name = request.POST['playlist_name']).url
+        return redirect(f'/playlist/{playlist}')
 
 
 
