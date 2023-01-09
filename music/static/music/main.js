@@ -507,7 +507,7 @@ function context_menu_creator(e) {
     var context = document.createElement('div');
     context.id = "context_menu";
     context.innerHTML = `
-        <div id="add_to_playlist" onclick="addremove_playlist('${e.target.parentElement.getElementsByClassName('favorite')[0].getAttribute('id')}')">Добавить(удалить) в плейлист</div>
+        <div id="add_to_playlist" onclick="addremove_playlist('${e.target.parentElement.getElementsByClassName('favorite')[0].getAttribute('id')}')">В плейлист добавить/удалить</div>
         <div class="btn_context">Добавить в очередь</div>
         <div class="btn_context">Похожее</div><hr>
         <div class="btn_context">Поделиться</div>

@@ -1067,7 +1067,7 @@ hr {
 /* context_menu */
 #context_menu {
     box-shadow: 0px 0px 2px 2px #88888811;
-    background-color: var(--body-color);
+    background-color: #000;
     position: absolute;
     padding: 5px;
     border-radius: 5px;
@@ -1076,11 +1076,12 @@ hr {
 #context_menu div {
     border-radius: 5px;
     margin: 2px auto;
-    padding: 5px;
+    padding: 6px;
     text-align: center;
+    background-color: #111;
 }
 #context_menu div:hover {
-    background-color: #333;
+    background-color: #222;
 }
 #context_menu div.report {
     background-color: #500e0e;
