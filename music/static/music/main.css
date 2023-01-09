@@ -661,13 +661,9 @@ canvas {
     margin-top: 10px;
 }
 .playlist_creator .inl_block {
-    display: inline-grid;
+    margin: 0 auto;
 }
-.playlist_creator .inl_block #img_playlist {
-    height: 128px;
-    width: 128px;
-    object-fit: cover;
-}
+
 
 
 .playlist_creator .inl_block .playlist_name_lable {
