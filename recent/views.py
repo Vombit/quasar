@@ -54,6 +54,7 @@ def recent(request):
 
     top_tracks = Music.objects.all().order_by("-auditions")[0:8]
 
+    # playlists = Playlist.objects.all()[0:8]
     context = {
         'top_artist': top_artist[::-1],
         'top_album': top_album[::-1],
