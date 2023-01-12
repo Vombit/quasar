@@ -1,4 +1,4 @@
-# quasar
+# quasar (raw)
 Audio streaming platform
 ### Preview artist
 <img src="https://github.com/Vombit/quasar/blob/master/project-previews/artist.jpg?raw=true" width="900">
