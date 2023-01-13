@@ -140,6 +140,16 @@ class Album(models.Model):
     def get_absolute_url(self):
         return f'/album/{self.url}'
 
+
+langs = (
+    ('rus', 'russian'),
+    ('eng', 'english'),
+    ('jpn', 'japanese'),
+    ('fra', 'french'),
+    ('zho', 'chinese'),
+    ('ukr', 'ukrainian'),
+    )
+
 class Music(models.Model):
     url = models.SlugField(max_length = 18, unique=True, db_index=True, blank=True)
     image = models.ImageField(upload_to=upload_to("tracks/images"), blank=True, null=True)
@@ -147,6 +157,7 @@ class Music(models.Model):
 
     name = models.CharField(max_length=128)
     slug_name = models.CharField(max_length=128, blank=True)
+    language = models.CharField(max_length=30, choices=langs, blank=True, null=True)
 
     genres = models.ForeignKey(GenresMusic, on_delete = models.SET_NULL, blank=True, null = True)
     date_create = models.DateTimeField(auto_now_add=True)
@@ -190,8 +201,6 @@ class FavoriteMusic(models.Model):
     def __str__(self):
         return f'{self.user.username} | {self.added_timestamp}'
 
-
-
 class Playlist(models.Model):
     url = models.SlugField(max_length = 18, unique=True, db_index=True, blank=True)
     image = models.ImageField(upload_to=upload_to("user/playlist"), blank=True, null=True)
@@ -209,6 +218,18 @@ class Playlist(models.Model):
         return dict(
             tracks=self.tracks, 
         )
+
+class FavoritePlaylist(models.Model):
+    user = models.ForeignKey(UserNew, on_delete=models.CASCADE)
+    playlist = models.ForeignKey(Playlist, on_delete=models.CASCADE)
+    added_timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-added_timestamp']
+    def __str__(self):
+        return f'{self.user.username} | {self.added_timestamp}'
+
+
 
 
 

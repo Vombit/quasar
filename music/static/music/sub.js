@@ -10,7 +10,7 @@ let sendSearch = (data) => {
     result_box.innerHTML = "";
     $.ajax({
         type:'POST',
-        url:'/search/',
+        url:'/search',
         data: {
             'csrfmiddlewaretoken':csrf,
             'data':data,

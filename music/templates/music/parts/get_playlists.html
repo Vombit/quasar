@@ -4,4 +4,5 @@
     {% for item in playlists %}
         <div class="block" id="{{ item.url }}">{{ item.name }}</div>
     {% endfor %}
+    {% if not playlists %}<h3 style="font-size: 14px;">no playlists</h3>{% endif %}
 </div>

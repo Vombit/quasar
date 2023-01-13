@@ -2,13 +2,18 @@
 <div class="content_page">
     <div class="content_header">
         <div class="content_sub_info">
-            <div class="content_sub_info_block">Автор: {{ author.displayName }}</div>
-            <div class="content_sub_info_block">Последнее изменение: {{ correction|date:"Y-m-d" }}</div>
+            <div class="content_sub_info_block">Автор: {{ playlist.author.displayName }}</div>
+            <div class="content_sub_info_block">Последнее изменение: {{ playlist.correction|date:"Y-m-d" }}</div>
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ playlist_avatar }}" class="content_info_img" onerror="imgError(this);">
+            <img src="/media/{{ playlist.image }}" class="content_info_img" onerror="imgError(this);">
             <div class="content_type">Плейлист</div>
-            <div class="content_info_text">{{ name }}</div>
+            {% if user_sub %}
+                <div class="subs" title="отписаться" onclick="sub_on('remove', 'playlist', '{{ playlist.url }}')">✔</div>
+            {% else %}
+                <div class="subs" title="подписаться" onclick="sub_on('add', 'playlist', '{{ playlist.url }}')">➕</div>
+            {% endif %}
+            <div class="content_info_text">{{ playlist.name }}</div>
         </div>
     </div>
     <div class="content_body">

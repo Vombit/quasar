@@ -8,7 +8,7 @@ from .models import *
 
 class MusicAdminInline(admin.TabularInline):
     model = Music
-    fields = ('sub_artist', 'name', 'track_type', 'audio_file', 'genres')
+    fields = ('sub_artist', 'name', 'track_type', 'language', 'audio_file', 'genres')
     extra = 0
 
 
@@ -80,7 +80,7 @@ class ArtistAlbumAdmin(admin.ModelAdmin):
 class ArtistAlbumMusicAdmin(admin.ModelAdmin):
     list_display = ('name', 'artist', 'album', 'auditions', 'track_time')
     fieldsets = (
-        (None, {'fields': ('url', 'slug_name')}),
+        (None, {'fields': ('url', 'slug_name', 'language')}),
         (('Info'), {'fields': ('name', 'artist', 'sub_artist', 'album', 'auditions')}),
         (('Data'), {'fields': ('genres', 'track_type', 'image', 'audio_file', 'track_time')}),
     )
@@ -107,6 +107,12 @@ class PlaylistAdmin(admin.ModelAdmin):
 
 @admin.register(FavoriteMusic)
 class FavoriteMusicAdmin(admin.ModelAdmin):
+    list_display = ('user', 'added_timestamp')
+
+    search_fields = ('user',)
+
+@admin.register(FavoritePlaylist)
+class FavoritePlaylistAdmin(admin.ModelAdmin):
     list_display = ('user', 'added_timestamp')
 
     search_fields = ('user',)

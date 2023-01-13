@@ -549,3 +549,17 @@ function create_playlist() {
         }
     })
 }
+
+function sub_on(type, item, id) {
+    console.log($('.subs')[0])
+    if (item == 'playlist') {
+        $.get(`/application/manage/playlist/subscribe_playlist/${type}&${id}`)
+                .done(function() {
+                    if (type == 'add') {
+                        $('.subs')[0].innerHTML = '✔'
+                    } else {
+                        $('.subs')[0].innerHTML = '➕'
+                    }
+                });
+    }
+}

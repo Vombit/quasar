@@ -14,7 +14,7 @@ urlpatterns = [
     path('signup/', views.signupuser, name='signupuser'),
     path('logout/', views.logoutuser, name='logoutuser'),
     
-    path('search/', views.search_result, name='search'),
+    path('search', views.search_result, name='search'),
 
     path('preferences/', views.preferences, name='preferences'),
     path('profile/', views.profile, name='me'),
@@ -34,13 +34,14 @@ urlpatterns = [
     path('application/manage/playlist/create', views.create_playlist, name='create_playlist'),
     path('application/manage/playlist/<playlist_id>&<track_id>', views.add_remove_playlist, name='add_remove_playlist'),
 
+    path('application/manage/playlist/subscribe_playlist/<classname>&<playlist_id>', views.subscribe_playlist, name='subscribe_playlist'),
 
     path('music/get_favorite', views.get_liked, name='get_liked'),
 
     path('music/<filename>', views.protected_media, name='protected_media'),
 
 
-    path('recent/', recent.views.recent, name='recent'),
+    path('recent', recent.views.recent, name='recent'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

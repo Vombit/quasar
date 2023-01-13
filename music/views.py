@@ -23,7 +23,8 @@ def user_data(user_name):
 
 def get_subscriptions(user):
     my_playlists = Playlist.objects.filter(author = user)
-    return my_playlists
+    sub_playlists = FavoritePlaylist.objects.filter(user = user)
+    return my_playlists, sub_playlists
 
 def get_favorite(user):
     my_favorite = FavoriteMusic.objects.filter(user=user)
@@ -88,10 +89,10 @@ def profile(request):
     context = {
         'title': 'Profile',
         'genres': user.genres.all(),
-        'playlists': get_subscriptions(request.user),
+        'playlists': get_subscriptions(request.user)[0],
+        'playlists_sub': get_subscriptions(request.user)[1],
         'tracks':  FavoriteMusic.objects.filter(user=request.user),
     }
-
     if request.method == 'POST':
         return HttpResponse(render(request, 'music/pages/profile.html', context))
 
@@ -125,7 +126,8 @@ def favorite_music(request):
     context = {
         'title': 'Favorite Music',
         'tracks': tracks,
-        'playlists': get_subscriptions(request.user),
+        'playlists': get_subscriptions(request.user)[0],
+        'playlists_sub': get_subscriptions(request.user)[1],
         'type': 'fav',
         'id': '',
     }
@@ -149,7 +151,8 @@ def author(request, author_id):
         'genres': author.genres.all(),
         'tracks': tracks,
         'albums': albums,
-        'playlists': get_subscriptions(request.user),
+        'playlists': get_subscriptions(request.user)[0],
+        'playlists_sub': get_subscriptions(request.user)[1],
         'type': 'artist',
         'id': author.url,
     }
@@ -169,7 +172,8 @@ def album(request, album_id):
         'name': album.name,
         'album_status': album,
         'tracks': tracks,
-        'playlists': get_subscriptions(request.user),
+        'playlists': get_subscriptions(request.user)[0],
+        'playlists_sub': get_subscriptions(request.user)[1],
         'type': 'album',
         'id': album.url,
     }
@@ -181,15 +185,19 @@ def album(request, album_id):
 def playlist(request, playlist_id):
     playlist = get_object_or_404(Playlist, url = playlist_id)
 
+    sub = False
+    for item in get_subscriptions(request.user)[1]:
+        if playlist == item.playlist:
+            sub = True
+
     context = {
+        'playlist': playlist,
         'title': f'playlist - {playlist.name}',
-        'name': playlist.name,
-        'playlist_avatar': playlist.image,
-        'author': playlist.author,
-        'correction': playlist.correction,
         'tracks': playlist.tracks.all(),
-        'playlists': get_subscriptions(request.user),
+        'playlists': get_subscriptions(request.user)[0],
+        'playlists_sub': get_subscriptions(request.user)[1],
         'type': 'playlist',
+        'user_sub': sub,
         'id': playlist.url,
     }
 
@@ -312,8 +320,7 @@ def datacloud(request):
     userdata = UserMusicSetting.objects.get(user=request.user)
 
     if not user.exists():
-        usr = UserMusicSetting.objects.create(user=request.user)
-        usr.save()
+        UserMusicSetting.objects.create(user=request.user)
 
     if request.method == 'POST':
         track = Music.objects.get(url = request.POST['data[track]'])
@@ -481,3 +488,19 @@ def add_remove_playlist(request, playlist_id, track_id):
             return  HttpResponse(True)
 
     return HttpResponse(False)
+
+
+@login_required
+def subscribe_playlist(request, classname, playlist_id):
+    playlist = Playlist.objects.get(url = playlist_id)
+
+    sub = FavoritePlaylist.objects.filter(user=request.user, playlist=playlist)
+
+    if classname == 'add':
+        if not sub.exists():
+            FavoritePlaylist.objects.create(user=request.user, playlist=playlist)
+    elif classname == 'remove':
+        if sub.exists():
+            sub.delete()
+
+    return HttpResponse(True)

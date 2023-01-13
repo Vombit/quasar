@@ -765,6 +765,21 @@ hr {
 .content_info_block {
     display: flex;
 }
+.content_info_block .subs {
+    background-color: #111;
+    border-radius: 8px;
+    width: 39px;
+    height: 32px;
+    line-height: 32px;
+    position: relative;
+    margin-left: -80px;
+    margin-top: 196px;
+    margin-right: 80px;
+    text-align: center;
+}
+.content_info_block .subs:hover {
+    background-color: #000;
+}
 .content_info_img {
     width: 180px;
     height: 180px;

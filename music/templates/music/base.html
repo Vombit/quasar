@@ -19,12 +19,17 @@
                 <div class="playlist_block">
                     <a href="{% url 'favorite_music' %}" class="link">Favorite music</a>
                 </div>
-                {% for item in playlists %}
+                {% for item in playlists %}   
                     <div class="playlist_block">
                         <a href="/playlist/{{ item.url }}" class="link">{{ item.name }}</a>
                     </div>
                 {% endfor %}
                 <hr><h5 class="title_playlist">Added playlists</h5>
+                {% for item in playlists_sub %}   
+                    <div class="playlist_block">
+                        <a href="/playlist/{{ item.playlist.url }}" class="link">{{ item.playlist.name }}</a>
+                    </div>
+                {% endfor %}
             </div>
         </div>
         <div id="main_page_elements" class="Sounds box main_page">
