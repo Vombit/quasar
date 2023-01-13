@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="{% static 'music/jquery.min.js' %}"></script>
+    <link href="{% static 'staff_panel/main.css' %}" rel="stylesheet"/>
+    <title>{{ title|title }}</title>
+</head>
+<body>
+    <div class="staff_form">
+        <form action="/staff_panel" method="post">
+            <h2>Выбор автора</h2>
+            <div class="items artist">
+                <input type="text" id="selectFilter" placeholder="Введи текст для поиска">
+                <select name='id' id="filterableSelect">
+                    {% for item in artists %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+                <span>создать автора</span>
+            </div>
+            <h2>Выбор альбома</h2>
+            <div class="items album">
+                <input type="text" id="test" placeholder="Введи текст для поиска">
+                <select name='test2' id="test">
+                    {% for item in albums %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+                <span>создать альбом</span>
+            </div>
+            <h2>Выбор треков</h2>
+            <div class="items track">
+                <input type="text" id="test2" placeholder="Введи текст для поиска">
+                <select name='test22' id="te2st">
+                    {% for item in tracks %}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                    {% endfor %}
+                </select>
+                <span>добавить трек</span>
+            </div>
+
+        </form>
+    </div>
+    <script src="{% static 'staff_panel/main.js' %}"></script>
+</body>
+</html>

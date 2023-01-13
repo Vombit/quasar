@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from music import views
 import recent.views
+import staff_panel.views
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -43,5 +44,9 @@ urlpatterns = [
 
     path('recent', recent.views.recent, name='recent'),
 
+
+
+
+    path('staff_panel', staff_panel.views.main, name='main'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

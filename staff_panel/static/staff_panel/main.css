@@ -1,0 +1,31 @@
+* {
+    display: block;
+}
+body{background-color: #000;}
+h2{
+    text-align: center;color: #fff;
+}
+.staff_form {
+    height: fit-content;
+    width: 90%;
+    border-radius: 8px;
+    padding: 24px;
+    background: #222;
+    position: fixed; top: 50%; left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    align-self: center;
+}
+form {
+    display: grid;
+    justify-content: center;
+}
+
+form .items {
+    margin: 5px auto;
+}
+form .items input {
+    margin: 5px auto;
+}
+

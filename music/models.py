@@ -148,6 +148,7 @@ langs = (
     ('fra', 'french'),
     ('zho', 'chinese'),
     ('ukr', 'ukrainian'),
+    ('isl', 'icelandic'),
     )
 
 class Music(models.Model):
