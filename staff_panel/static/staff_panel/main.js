@@ -1,5 +1,7 @@
 var select = document.getElementById("filterableSelect");
 var oldOptions = Array.apply(undefined, select.options); // копируем все OPTION. По ним будем искать
+let csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value
+let content_body = document.getElementById('content_body')
 
 document.getElementById('selectFilter').onkeyup = function(e) {
   // спец. сочетания пропускаем
@@ -13,3 +15,30 @@ document.getElementById('selectFilter').onkeyup = function(e) {
     }
   }
 };
+
+let sendSearch = (data) => {
+  content_body.innerHTML = "";
+  $.ajax({
+      type:'POST',
+      url:'/get_info',
+      data: {
+          'csrfmiddlewaretoken':csrf,
+          'data':data,
+      },
+      success: (res) => {
+        content_body.innerHTML = res;
+      },
+      error: (err) => {
+          return
+      }
+  })
+}
+
+
+select.addEventListener('change', function (e) {
+  console.log("Changed to: " + e.target.value)
+
+  sendSearch(e.target.value)
+
+
+})

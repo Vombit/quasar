@@ -1,21 +1,15 @@
-* {
-    display: block;
-}
+
 body{background-color: #000;}
-h2{
-    text-align: center;color: #fff;
-}
+h2{text-align: center;color: #fff;}
 .staff_form {
     height: fit-content;
+    min-height: 100%;
     width: 90%;
     border-radius: 8px;
     padding: 24px;
     background: #222;
-    position: fixed; top: 50%; left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     align-self: center;
+    margin: 0 auto;
 }
 form {
     display: grid;
@@ -24,8 +18,109 @@ form {
 
 form .items {
     margin: 5px auto;
+    color: #fff;
 }
 form .items input {
     margin: 5px auto;
 }
+
+
+img {
+    width:  196px;
+    height: 196px;
+    object-fit: cover;
+}
+
+
+
+
+
+.container {
+    color: #fff;
+    display: grid;
+    /* grid-template-columns: 25% 40% 35%; */
+    /* grid-template-rows: auto auto 500px; */
+    gap: 24px 32px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "info description image"
+        "info genres ."
+        "album album album";
+}
+.info {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */
+    gap: 24px 32px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "url url url"
+        "slug slug slug"
+        "name name name"
+        "is_author is_author is_author"
+        "verification verification verification";
+    grid-area: info;
+}
+.url { grid-area: url; }
+.slug { grid-area: slug; }
+.name { grid-area: name; }
+.is_author { grid-area: is_author; }
+.verification { grid-area: verification; }
+.description { grid-area: description; }
+.image { grid-area: image; }
+.genres { grid-area: genres; }
+.album {grid-area: album;}
+.albums {
+    display: grid; 
+    /* grid-template-columns: 1fr 1fr 1fr;  */
+    /* grid-template-rows: 1fr 1fr 1fr; */
+    gap: 24px 32px; 
+    grid-template-areas: 
+        "info_album date_album image_album"
+        "info_album album_status image_album"
+        "track track track"; 
+    grid-area: album;
+}
+.track {grid-area: track;}
+.tracks {
+    display: grid; 
+    /* grid-template-columns: 1fr 1fr 1fr 1fr;  */
+    /* grid-template-rows: 1fr 1fr 1fr;  */
+    gap: 24px 32px; 
+    grid-template-areas: 
+        "url_track language_track audio_file image_track"
+        "slug_track sub_artists audio_file image_track"
+        "name_track genres_track audio_file image_track"; 
+    grid-area: tracks; 
+}
+.image_track { grid-area: image_track; }
+.audio_file { grid-area: audio_file; }
+.genres_track { grid-area: genres_track; }
+.sub_artists { grid-area: sub_artists; }
+.language_track { grid-area: language_track; }
+.url_track { grid-area: url_track; }
+.slug_track { grid-area: slug_track; }
+.name_track { grid-area: name_track; }
+.info_album {
+    display: grid; 
+    /* grid-template-columns: 1fr 1fr 1fr;  */
+    /* grid-template-rows: 1fr 1fr 1fr;  */
+    gap: 24px 32px; 
+    grid-template-areas: 
+        "url_album url_album url_album"
+        "slug-album slug-album slug-album"
+        "name_album name_album name_album"; 
+    grid-area: info_album; 
+}
+.url_album { grid-area: url_album; }
+.slug-album { grid-area: slug-album; }
+.name_album { grid-area: name_album; }
+.image_album { grid-area: image_album; }
+.date_album { grid-area: date_album; }
+.album_status { grid-area: album_status; }
+
+
+
+
+
 

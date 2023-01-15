@@ -48,5 +48,6 @@ urlpatterns = [
 
 
     path('staff_panel', staff_panel.views.main, name='main'),
+    path('get_info', staff_panel.views.get_info, name='get_info'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

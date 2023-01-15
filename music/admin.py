@@ -15,7 +15,7 @@ class MusicAdminInline(admin.TabularInline):
 
 class AlbumAdminInline(admin.TabularInline):
     model = Album
-    fields = ('name', 'image', 'album_status')
+    fields = ('name', 'image', 'date_album', 'album_status')
     extra = 0
 
 
@@ -101,7 +101,7 @@ class PlaylistAdmin(admin.ModelAdmin):
         (('Info'), {'fields': ('name', 'author', 'image', 'correction', 'opened')}),
         (('data'), {'fields': ('tracks', 'quantity')}),
     )
-    readonly_fields = ('url', 'quantity', 'correction')
+    readonly_fields = ('url', 'quantity', 'correction', 'author')
     search_fields = ('name', 'author__name')
 
 

@@ -121,6 +121,7 @@ class Album(models.Model):
     ('S', 'Сингл'),
     ('A', 'Альбом'),
     ('MA', 'Мини-альбом'),
+    ('EPS', 'EPs'),
     )
 
     url = models.SlugField(max_length = 18, unique=True, db_index=True, blank=True)

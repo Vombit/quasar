@@ -1,0 +1,123 @@
+<form action="/staff_panel" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <h2>Автор</h2>
+    <div class="container">
+        <div class="info">
+            <div class="url">
+                url: {{ artists.url }}
+            </div>
+            <div class="slug">
+                slug: {{ artists.slug_name }}
+            </div>
+            <div class="name">
+                <label for="name">name:</label>
+                <input type="text" name="name" value="{{ artists.name }}" maxlength="128" required id="name">
+            </div>
+            <div class="is_author">
+                <label for="is_author">Is author:</label>
+                <input type="text" name="is_author" value="{{ artists.is_author }}" maxlength="16" id="is_author">
+            </div>
+            <div class="verification">
+                <label for="verification">verification</label>
+                <input type="checkbox" name="verification" id="verification">
+            </div>
+        </div>
+        <div class="description">
+            <label for="description">Description:</label>
+            <textarea name="description" cols="48" rows="10" maxlength="2048" id="description">{{ artists.description }}</textarea>
+        </div>
+        <div class="image">
+            <label for="image">Image</label>
+            <img src="/media/{{ artists.image }}">
+            <input type="file" accept="image/*" name="image" id="image">
+                <label for="image">
+                    <span>Загрузить файл</span>
+                </label>
+        </div>
+        <div class="genres">
+            <label for="genres">genres:</label>
+            <select name="genres" id="genres" multiple="">
+                {% for item in genres  %}
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="album">
+            {% for item in albums %}
+                <div class="albums">
+                    <div class="info_album">
+                        <div class="url_album">
+                            url album: {{ item.url }}
+                        </div>
+                        <div class="slug-album">
+                            slug album: {{ item.slug_name }}
+                        </div>
+                        <div class="name_album">
+                            name album: {{ item.name }}
+                        </div>
+                    </div>
+                    <div class="date_album">
+                        date album: {{ item.date_album }}
+                    </div>
+                    <div class="album_status">
+                        album status: {{ item.album_status }}
+                    </div>
+                    <div class="image_album">
+                        <label for="image">Image</label>
+                        <img src="/media/{{ item.image }}">
+                        <input type="file" accept="image/*" name="image" id="image">
+                        <label for="image">
+                            <span>Загрузить файл</span>
+                        </label>
+                    </div>
+                    <div class="track">
+                        {% for item in tracks %}
+                            <div class="tracks">
+                                <div class="image_track">
+                                    <label for="image">Image</label>
+                                    <img src="/media/{{ item.image }}">
+                                    <input type="file" accept="image/*" name="image" id="image">
+                                    <label for="image">
+                                        <span>Загрузить файл</span>
+                                    </label>
+                                </div>
+                                <div class="audio_file">
+                                    audio_file
+                                </div>
+                                <div class="genres_track">
+                                    genres_track
+                                </div>
+                                <div class="sub_artists">
+                                    sub_artists
+                                </div>
+                                <div class="language_track">
+                                    language track: {{ item.language }}
+                                </div>
+                                <div class="url_track">
+                                    url track: {{ item.url }}
+                                </div>
+                                <div class="slug_track">
+                                    slug track: {{ item.slug_name }}
+                                </div>
+                                <div class="name_track">
+                                    name track: {{ item.name }} 
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+</form>
