@@ -16,21 +16,6 @@ form {
     justify-content: center;
 }
 
-form .items {
-    margin: 5px auto;
-    color: #fff;
-}
-form .items input {
-    margin: 5px auto;
-}
-
-
-img {
-    width:  196px;
-    height: 196px;
-    object-fit: cover;
-}
-
 
 
 
@@ -40,25 +25,24 @@ img {
     display: grid;
     /* grid-template-columns: 25% 40% 35%; */
     /* grid-template-rows: auto auto 500px; */
-    gap: 24px 32px;
+    gap: 24px 128px;
     grid-auto-flow: row;
     grid-template-areas:
-        "info description image"
-        "info genres ."
+        "info info image"
+        "genres description ."
+        "genres description ."
         "album album album";
 }
 .info {
     display: grid;
     /* grid-template-columns: 1fr 1fr 1fr; */
     /* grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */
-    gap: 24px 32px;
+    /* gap: 24px 32px; */
     grid-auto-flow: row;
     grid-template-areas:
-        "url url url"
-        "slug slug slug"
-        "name name name"
-        "is_author is_author is_author"
-        "verification verification verification";
+        "url name"
+        "slug is_author"
+        ". verification";
     grid-area: info;
 }
 .url { grid-area: url; }
@@ -67,32 +51,49 @@ img {
 .is_author { grid-area: is_author; }
 .verification { grid-area: verification; }
 .description { grid-area: description; }
-.image { grid-area: image; }
+.image_artist { grid-area: image; }
 .genres { grid-area: genres; }
-.album {grid-area: album;}
+.album {
+    margin-top: 48px;
+    border-top: 2px solid #333;
+    padding-top: 12px;
+    grid-area: album;
+}
 .albums {
     display: grid; 
     /* grid-template-columns: 1fr 1fr 1fr;  */
     /* grid-template-rows: 1fr 1fr 1fr; */
     gap: 24px 32px; 
     grid-template-areas: 
+        "name_album name_album name_album"
         "info_album date_album image_album"
         "info_album album_status image_album"
         "track track track"; 
     grid-area: album;
 }
-.track {grid-area: track;}
+.name_album { grid-area: name_album; }
+.track {
+    margin-top: 48px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    padding-top: 12px;
+    grid-area: track;
+}
 .tracks {
+    border-top: 1px solid #333;
+    padding: 24px;
     display: grid; 
     /* grid-template-columns: 1fr 1fr 1fr 1fr;  */
     /* grid-template-rows: 1fr 1fr 1fr;  */
     gap: 24px 32px; 
     grid-template-areas: 
+        "name_tracks name_tracks name_tracks name_tracks"
         "url_track language_track audio_file image_track"
         "slug_track sub_artists audio_file image_track"
         "name_track genres_track audio_file image_track"; 
     grid-area: tracks; 
 }
+.name_tracks {grid-area: name_tracks}
 .image_track { grid-area: image_track; }
 .audio_file { grid-area: audio_file; }
 .genres_track { grid-area: genres_track; }
@@ -122,5 +123,43 @@ img {
 
 
 
+.item {
+    display: block;
+    text-align: center;
+    margin: 5px auto;
+}
 
+.image img {
+    border-radius: 12px;
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+}
+.input-file {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+}
 
+.btn_upload {
+    color: #777;
+    line-height: 32px;
+    width: 200px;
+    border: 2px solid #444;
+    border-radius: 8px;
+}
+.btn_upload:hover {
+    border: 2px solid #666;
+}
+.input-file + .modified-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.description #description, .text_input {
+    background-color: #e3e3e3;
+    border-radius: 8px;
+    border: 2px solid #000;
+    min-height: 24px;
+}

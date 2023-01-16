@@ -11,44 +11,21 @@
     <div class="staff_form">
         <form  id="search_form" role="search" autocomplete="off">
             {% csrf_token %}
-
             <h2>Выбор автора</h2>
             <div class="items artist">
-                <input type="text" id="selectFilter" placeholder="Введи текст для поиска">
-                <select name='id' id="filterableSelect" size="5">
+                <input type="text" id="selectFilter" placeholder="Введи текст для поиска" class="item text_input">
+                <select name='id' id="filterableSelect" size="6" class="item">
                     {% for item in artists %}
                         <option value="{{ item.url }}">{{ item.name }}</option>
                     {% endfor %}
                 </select>
-                <span>создать автора</span>
+                <span class="item">создать автора</span>
             </div>
         </form>
 
         <div class="content_body" id="content_body">
-
         </div>
-
-
-
-
-
-
-        
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="{% static 'staff_panel/main.js' %}"></script>
 </body>
 </html>

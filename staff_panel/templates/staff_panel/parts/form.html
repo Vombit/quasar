@@ -1,43 +1,43 @@
 <form action="/staff_panel" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-
     <h2>Автор</h2>
     <div class="container">
         <div class="info">
-            <div class="url">
+            <div class="url" class="item">
                 url: {{ artists.url }}
             </div>
-            <div class="slug">
+            <div class="slug" class="item">
                 slug: {{ artists.slug_name }}
             </div>
             <div class="name">
-                <label for="name">name:</label>
-                <input type="text" name="name" value="{{ artists.name }}" maxlength="128" required id="name">
+                <label for="name" class="item">name:</label>
+                <input type="text" name="name" value="{{ artists.name }}" maxlength="128" required id="name" class="item text_input">
             </div>
             <div class="is_author">
-                <label for="is_author">Is author:</label>
-                <input type="text" name="is_author" value="{{ artists.is_author }}" maxlength="16" id="is_author">
+                <label for="is_author" class="item">Is author:</label>
+                <input type="text" name="is_author" value="{{ artists.is_author }}" maxlength="16" id="is_author" class="item text_input">
             </div>
             <div class="verification">
-                <label for="verification">verification</label>
-                <input type="checkbox" name="verification" id="verification">
+                <label for="verification" class="item">verification</label>
+                <input type="checkbox" name="verification" id="verification" class="item">
             </div>
         </div>
         <div class="description">
-            <label for="description">Description:</label>
-            <textarea name="description" cols="48" rows="10" maxlength="2048" id="description">{{ artists.description }}</textarea>
+            <label for="description" class="item">Description:</label>
+            <textarea name="description" cols="64" rows="10" maxlength="2048" id="description" class="item text_input">{{ artists.description }}</textarea>
         </div>
-        <div class="image">
-            <label for="image">Image</label>
-            <img src="/media/{{ artists.image }}">
-            <input type="file" accept="image/*" name="image" id="image">
-                <label for="image">
-                    <span>Загрузить файл</span>
+        <div class="image image_artist">
+            <label for="image" class="item">Image</label>
+            <img src="/media/{{ artists.image }}" class="item">
+            <input type="file" accept="image/*" name="image" id="image" class="input-file">
+                <label for="image" class="item btn_upload modified-label">
+                    <span class="js-fileName">Загрузить файл</span>
                 </label>
         </div>
         <div class="genres">
-            <label for="genres">genres:</label>
-            <select name="genres" id="genres" multiple="">
+            <label for="genres" class="item">genres:</label>
+            <input type="text" placeholder="Введи текст для поиска" class="item text_input">
+            <select name="genres" id="genres" multiple="" class="item" size="6">
                 {% for item in genres  %}
                     <option value="{{ item.id }}">{{ item.name }}</option>
                 {% endfor %}
@@ -45,6 +45,7 @@
         </div>
         <div class="album">
             {% for item in albums %}
+            <h2 class="name_album">Альбом: {{ item.name }}</h2>
                 <div class="albums">
                     <div class="info_album">
                         <div class="url_album">
@@ -63,23 +64,24 @@
                     <div class="album_status">
                         album status: {{ item.album_status }}
                     </div>
-                    <div class="image_album">
-                        <label for="image">Image</label>
-                        <img src="/media/{{ item.image }}">
-                        <input type="file" accept="image/*" name="image" id="image">
-                        <label for="image">
-                            <span>Загрузить файл</span>
+                    <div class="image image_album">
+                        <label for="image" class="item">Image</label>
+                        <img src="/media/{{ item.image }}" class="item">
+                        <input type="file" accept="image/*" name="image" id="image" class="input-file"> 
+                        <label for="image" class="item btn_upload modified-label">
+                            <span class="js-fileName">Загрузить файл</span>
                         </label>
                     </div>
                     <div class="track">
+                        <h2 class="name_tracks">Треки</h2>
                         {% for item in tracks %}
                             <div class="tracks">
-                                <div class="image_track">
-                                    <label for="image">Image</label>
-                                    <img src="/media/{{ item.image }}">
-                                    <input type="file" accept="image/*" name="image" id="image">
-                                    <label for="image">
-                                        <span>Загрузить файл</span>
+                                <div class="image image_track">
+                                    <label for="image" class="item">Image</label>
+                                    <img src="/media/{{ item.image }}" class="item">
+                                    <input type="file" accept="image/*" name="image" id="image" class="input-file">
+                                    <label for="image" class="item btn_upload modified-label">
+                                        <span class="js-fileName">Загрузить файл</span>
                                     </label>
                                 </div>
                                 <div class="audio_file">
@@ -110,14 +112,4 @@
             {% endfor %}
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
 </form>

@@ -73,6 +73,9 @@ def generator_url(sender, instance, *args, **kwargs):
 
 class GenresMusic(models.Model):
     name = models.CharField(max_length=48, unique=True)
+    
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return self.name
