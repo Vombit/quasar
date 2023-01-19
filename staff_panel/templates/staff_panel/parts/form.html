@@ -45,8 +45,8 @@
         </div>
         <div class="album">
             {% for item in albums %}
-            <h2 class="name_album">Альбом: {{ item.name }}</h2>
                 <div class="albums">
+                    <h2 class="name_album">Альбом: {{ item.name }}</h2>
                     <div class="info_album">
                         <div class="url_album">
                             url album: {{ item.url }}
@@ -74,11 +74,11 @@
                     </div>
                     <div class="track">
                         <h2 class="name_tracks">Треки</h2>
-                        {% for item in tracks %}
+                        {% for item_t in tracks %}
+                            {% if item_t.album == item %}
                             <div class="tracks">
                                 <div class="image image_track">
-                                    <label for="image" class="item">Image</label>
-                                    <img src="/media/{{ item.image }}" class="item">
+                                    <img src="/media/{{ item_t.image }}" class="item">
                                     <input type="file" accept="image/*" name="image" id="image" class="input-file">
                                     <label for="image" class="item btn_upload modified-label">
                                         <span class="js-fileName">Загрузить файл</span>
@@ -94,18 +94,19 @@
                                     sub_artists
                                 </div>
                                 <div class="language_track">
-                                    language track: {{ item.language }}
+                                    language track: {{ item_t.language }}
                                 </div>
                                 <div class="url_track">
-                                    url track: {{ item.url }}
+                                    url track: {{ item_t.url }}
                                 </div>
                                 <div class="slug_track">
-                                    slug track: {{ item.slug_name }}
+                                    slug track: {{ item_t.slug_name }}
                                 </div>
                                 <div class="name_track">
-                                    name track: {{ item.name }} 
+                                    name track: {{ item_t.name }} 
                                 </div>
                             </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>

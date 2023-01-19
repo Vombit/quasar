@@ -8,15 +8,15 @@ from .models import *
 
 class MusicAdminInline(admin.TabularInline):
     model = Music
-    fields = ('sub_artist', 'name', 'track_type', 'language', 'audio_file', 'genres')
+    fields = ('artist','sub_artist', 'name', 'track_type', 'language', 'audio_file', 'genres')
     extra = 0
 
 
 
-class AlbumAdminInline(admin.TabularInline):
-    model = Album
-    fields = ('name', 'image', 'date_album', 'album_status')
-    extra = 0
+# class AlbumAdminInline(admin.TabularInline):
+#     model = Album
+#     fields = ('name', 'image', 'date_album', 'album_status')
+#     extra = 0
 
 
 @admin.register(UserNew)
@@ -51,17 +51,17 @@ class ArtistAdmin(admin.ModelAdmin):
     )
     readonly_fields = ('url', 'slug_name')
     search_fields = ('name', 'is_author', 'genres__name', 'slug_name')
-    inlines = (AlbumAdminInline,)
+    # inlines = (AlbumAdminInline,)
 
 @admin.register(Album)
 class ArtistAlbumAdmin(admin.ModelAdmin):
-    list_display = ('name', 'artist', 'date_create')
+    list_display = ('name', 'date_create')
     fieldsets = (
         (None, {'fields': ('url', 'slug_name')}),
         (('Info'), {'fields': ('name', 'artist', 'image', 'date_album', 'album_status')}),
     )
     readonly_fields = ('url', 'slug_name')
-    search_fields = ('name', 'artist__name', 'slug_name')
+    search_fields = ('name', 'slug_name')
     inlines = (MusicAdminInline,)
 
     def save_formset(self, request, form, formset, change):

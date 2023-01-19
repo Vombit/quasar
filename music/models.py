@@ -112,6 +112,8 @@ class Artist(models.Model):
     description = models.TextField(max_length=2048, blank=True)
     genres = models.ManyToManyField(GenresMusic, blank = True)
 
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -124,7 +126,6 @@ class Album(models.Model):
     ('S', 'Сингл'),
     ('A', 'Альбом'),
     ('MA', 'Мини-альбом'),
-    ('EPS', 'EPs'),
     )
 
     url = models.SlugField(max_length = 18, unique=True, db_index=True, blank=True)
@@ -133,7 +134,8 @@ class Album(models.Model):
     name = models.CharField(max_length=128)
     slug_name = models.CharField(max_length=128, blank=True)
 
-    artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
+    artist = models.ManyToManyField(Artist)
+
     date_create = models.DateTimeField(auto_now=True, editable=True)
     date_album = models.DateField(blank=True, null=True)
     album_status = models.CharField(max_length=30, choices=state, default='Сингл')
