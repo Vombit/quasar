@@ -300,44 +300,30 @@ $("#volume_container").mouseup(function(e) {
     $("#volume_variable").height(height-clickY);
 });
 
-
 $(document).ready(function() {
     get_fav_tracks();
     header_color_set();
     loadData();
-    setInterval(function() {if(!mySMSound.paused && mySMSound.playState) updateData();}, 10000);
 })
-
-
-
-
 
 function imgError(image) {
     image.src = "/static/music/images/empty.png";
     return true;
 }
 
-
-
-function updateData() {
+function updateData(time=0) {
     var data = {
         'track': array_tracks[songIndex].id,
-        'curtime': mySMSound.position/1000,
+        'curtime': time,
         'curvolume': mySMSound.volume/100
     }
     $.post('/datacloud/', { 'csrfmiddlewaretoken':csrf, data });
 }
 
-
-
-
-
-
 var array_tracks;
 var songIndex = 0;
 var canvas_color;
 var mySMSound;
-
 
 function pauseSong() {
     player.classList.remove('play')
@@ -347,6 +333,8 @@ function pauseSong() {
     soundManager.pause('track_main');
 }
 function nextSong() {
+    updateData(Math.floor(tot*10)/10)
+    tot = 0
     songIndex++
     if (songIndex > array_tracks.length -1 ) {songIndex = 0}
     loadSong(array_tracks[songIndex])
@@ -355,14 +343,14 @@ function nextSong() {
 nextBtn.addEventListener('click', nextSong)
 
 function prevSong() {
+    updateData(Math.floor(tot*10)/10)
+    tot = 0
     songIndex--
     if (songIndex < 0 ) {songIndex = array_tracks.length-1}
     loadSong(array_tracks[songIndex])
     playSong()
 }
 prevBtn.addEventListener('click', prevSong)
-
-
 
 function setCurrentTime(e) {
     var width = this.clientWidth;
@@ -373,7 +361,6 @@ function setCurrentTime(e) {
 }
 progressContainer.addEventListener('click', setCurrentTime)
 
-
 playBtn.addEventListener('click', () => {
     const playing = player.classList.contains('play')
     if (playing) {
@@ -383,13 +370,7 @@ playBtn.addEventListener('click', () => {
     }
 })
 
-
-
-
-
-
-
-
+var tot = 0;
 function playSong() {
     let next_track = songIndex+1;
     let prev_track = songIndex-1;
@@ -400,8 +381,13 @@ function playSong() {
     if(mySMSound.paused && !mySMSound.playState) {
         soundManager.resume('track_main');
     } else {
+        var x1 = 0;
+        var x2 = 0;
+        var y = 0;
         soundManager.play('track_main', {
-            onfinish: function() {nextSong()},
+            onfinish: function() {
+                nextSong()
+            },
             whileplaying: function() {
                 var duration = this.duration;
                 var currentTime = this.position;
@@ -409,17 +395,20 @@ function playSong() {
                 progress.style.width = `${progressPrecent}%`
                 cover_time.innerHTML = trackTime(duration/1000)
                 cover_current_time.innerHTML = trackTime(currentTime/1000)
+                y = (Math.floor((x2 - x1) * 1000) / 1000)
+                if (y > 1 || y < 0) { y = 0 }
+                x1 = x2
+                x2 = Math.floor(currentTime)/1000
+                tot = tot + y;
             }
         });
     }
-
     $(".prev_track .queue_title").text(array_tracks.at([prev_track]).name);
     if (songIndex >= array_tracks.length-1 ) {
         $(".next_track .queue_title").text(array_tracks[0].name);
     } else {
         $(".next_track .queue_title").text(array_tracks[next_track].name);
     }
-    updateData()
 }
 
 function loadSong(song) {
@@ -435,7 +424,6 @@ function loadSong(song) {
             mySMSound = soundManager.getSoundById('track_main');
         }
     });
-
 
     title.innerHTML = song.name;
     author.innerHTML = `<a href="/artist/${song.author_url}" style="color:#89798e" class='link'>${song.author}</a>`;
@@ -481,7 +469,6 @@ function startPlayTracks(track, type, id) {
         });
 }
 
-
 function addremove_playlist(trk_id) {
     var voidd;
     $.ajax({
@@ -498,9 +485,6 @@ function addremove_playlist(trk_id) {
             })
         }
     })
-
-
-    // 
 }
 
 function context_menu_creator(e) {

@@ -208,6 +208,22 @@ class FavoriteMusic(models.Model):
     def __str__(self):
         return f'{self.user.username} | {self.added_timestamp}'
 
+class ListenedTrack(models.Model):
+    user = models.ForeignKey(UserNew, on_delete=models.CASCADE)
+    tracks = models.ForeignKey(Music, on_delete=models.CASCADE)
+    added_timestamp = models.DateTimeField(auto_now_add=True)
+    duration = models.PositiveIntegerField(blank=True, null=True)
+
+    class Meta:
+        ordering = ['-added_timestamp']
+    def __str__(self):
+        return f'{self.user.username} | {self.tracks} | {self.duration}'
+
+
+
+
+
+
 class Playlist(models.Model):
     url = models.SlugField(max_length = 18, unique=True, db_index=True, blank=True)
     image = models.ImageField(upload_to=upload_to("user/playlist"), blank=True, null=True)
