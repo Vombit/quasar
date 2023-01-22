@@ -319,13 +319,18 @@ def search_result(request):
 def datacloud(request):
     user = UserMusicSetting.objects.filter(user=request.user)
     userdata = UserMusicSetting.objects.get(user=request.user)
-    q = 0.8
+    q = 0.75
     if not user.exists():
         UserMusicSetting.objects.create(user=request.user)
     if request.method == 'POST':
         duration = int(float(request.POST['data[curtime]']))
         track = Music.objects.get(url = request.POST['data[track]'])
         chk_lis = ListenedTrack.objects.filter(user=request.user, tracks=track)
+
+        print(duration)
+        print(track.track_time)
+        print(track.track_time * q)
+
         if not chk_lis.exists():
             ListenedTrack.objects.create(user=request.user, tracks=track, duration=duration)
             if duration >= track.track_time * q:
