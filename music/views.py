@@ -14,7 +14,8 @@ from music.models import *
 from transliterate import translit, detect_language
 import cutlet
 import re
-
+import datetime
+from django.utils import timezone
 
 def user_data(user_name):
     user = UserNew.objects.get(username = user_name)
@@ -318,24 +319,25 @@ def search_result(request):
 def datacloud(request):
     user = UserMusicSetting.objects.filter(user=request.user)
     userdata = UserMusicSetting.objects.get(user=request.user)
-
+    q = 0.8
     if not user.exists():
         UserMusicSetting.objects.create(user=request.user)
-
     if request.method == 'POST':
+        duration = int(float(request.POST['data[curtime]']))
         track = Music.objects.get(url = request.POST['data[track]'])
-
-        userdata.last_track = request.POST['data[track]']
-        userdata.current_volume = request.POST['data[curvolume]']
-        userdata.current_time = request.POST['data[curtime]']
-
-        needtime = track.track_time * 0.6
-        if int(float(request.POST['data[curtime]'])) >= needtime:
-            if not int(float(request.POST['data[curtime]'])) >= needtime+10:
+        chk_lis = ListenedTrack.objects.filter(user=request.user, tracks=track)
+        if not chk_lis.exists():
+            ListenedTrack.objects.create(user=request.user, tracks=track, duration=duration)
+            if duration >= track.track_time * q:
                 track.auditions += 1
                 track.save()
-
-
+        elif (chk_lis.first().added_timestamp + timezone.timedelta(hours=1)) <= timezone.now():
+            ListenedTrack.objects.create(user=request.user, tracks=track, duration=duration)
+            if duration >= track.track_time * q:
+                track.auditions += 1
+                track.save()
+        userdata.last_track = request.POST['data[track]']
+        userdata.current_volume = request.POST['data[curvolume]']
         userdata.save()
         return JsonResponse(True, safe=False)
 
@@ -374,7 +376,6 @@ def sync(request):
         data = {
             'playlist':tracks,
             'track': userdata.last_track,
-            'curtime': userdata.current_time,
             'curvol': userdata.current_volume,
         }
         return JsonResponse({'message':data}, safe=False)

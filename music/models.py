@@ -262,7 +262,6 @@ class UserMusicSetting(models.Model):
     last_playlist = models.CharField(max_length=128, default='123')
     last_track = models.CharField(max_length=32, default='123')
     tracks = models.ManyToManyField(Music, blank=True, related_name = 'last_list')
-    current_time = models.FloatField(default=0)   
     current_volume = models.FloatField(default=0.5)   
 
 

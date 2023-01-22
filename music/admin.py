@@ -34,7 +34,10 @@ class UserNewAdmin(UserAdmin):
 class UserMusicSetting(admin.ModelAdmin):
     list_display = ('user', 'last_playlist', 'last_track')
 
-
+@admin.register(ListenedTrack)
+class ListenedTrack(admin.ModelAdmin):
+    list_display = ('user', 'tracks', 'added_timestamp')
+    readonly_fields = ('duration',)
 
 
 @admin.register(GenresMusic)
