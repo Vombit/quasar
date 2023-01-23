@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 <div class="content_page">
     <div class="content_header">
         <div class="content_sub_info">
@@ -7,7 +7,9 @@
             {% endfor %}
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ author_avatar }}" class="content_info_img" onerror="imgError(this);">
+            {% thumbnail author_avatar "256x256" crop="center" as im %}
+                <img src="/media/{{ im }}" class="content_info_img" onerror="imgError(this);">
+            {% endthumbnail %}
             <div class="content_type">{{ is_author }}</div>
             <div class="content_info_text">{{ name }}</div>
         </div>

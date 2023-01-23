@@ -1,7 +1,10 @@
+{% load thumbnail %}
 <div class="content_body_container_el_artist">
     <a href="/artist/{{ item.url }}" class="link"> 
         <figure>
-            <img src="/media/{{ item.image }}" onerror="imgError(this);">
+            {% thumbnail item.image "256x256" crop="center" as im %}
+                <img src="/media/{{ im }}" onerror="imgError(this);">
+            {% endthumbnail %}
             <figcaption title="{{ item.name }}">{{ item.name }}</figcaption>
         </figure>
     </a>

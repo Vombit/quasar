@@ -327,10 +327,6 @@ def datacloud(request):
         track = Music.objects.get(url = request.POST['data[track]'])
         chk_lis = ListenedTrack.objects.filter(user=request.user, tracks=track)
 
-        print(duration)
-        print(track.track_time)
-        print(track.track_time * q)
-
         if not chk_lis.exists():
             ListenedTrack.objects.create(user=request.user, tracks=track, duration=duration)
             if duration >= track.track_time * q:

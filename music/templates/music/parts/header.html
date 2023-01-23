@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 <div class="Header">
     <div class="hdr_hdr_block">
         <a href="{% url 'recent' %}" class="link">Главная</a>
@@ -9,7 +9,9 @@
     </form>
     <div class="hdr_hdr_block">
         <span class="menu_dropdown_profile">
-            <img src="/media/{{ user.avatar }}" onerror="this.src=`{% static 'music/images/empty.png' %}`">
+            {% thumbnail user.avatar "48x48" crop="center" as im %}
+                <img src="/media/{{ im }}" onerror="imgError(this);">
+            {% endthumbnail %}
             <span>{{ user.displayName }}</span>
         </span>
         <div class="head_profile_sub hidden">

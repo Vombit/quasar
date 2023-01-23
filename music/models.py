@@ -76,6 +76,8 @@ class GenresMusic(models.Model):
     
     class Meta:
         ordering = ['name']
+        verbose_name = 'Жанр'
+        verbose_name_plural = 'Жанры'
 
     def __str__(self):
         return self.name
@@ -113,7 +115,8 @@ class Artist(models.Model):
     genres = models.ManyToManyField(GenresMusic, blank = True)
 
     class Meta:
-        ordering = ['name']
+        verbose_name = 'Артист'
+        verbose_name_plural = 'Артисты'
 
     def __str__(self):
         return self.name
@@ -140,6 +143,10 @@ class Album(models.Model):
     date_album = models.DateField(blank=True, null=True)
     album_status = models.CharField(max_length=30, choices=state, default='Сингл')
 
+
+    class Meta:
+        verbose_name = 'Альбом'
+        verbose_name_plural = 'Альбомы'
     def __str__(self):
         return self.name
 
@@ -181,6 +188,10 @@ class Music(models.Model):
     sub_artist = models.ManyToManyField(Artist, blank=True, related_name = 'tasks_as_sub_artist')
 
     who_added = models.ForeignKey(UserNew, null=True, blank=True, on_delete = models.PROTECT)
+
+    class Meta:
+        verbose_name = 'Трек'
+        verbose_name_plural = 'Треки'
 
     def __str__(self):
         return self.name
@@ -233,6 +244,11 @@ class Playlist(models.Model):
     tracks = models.ManyToManyField(Music)
     author = models.ForeignKey(UserNew, on_delete = models.SET_NULL, null = True)
     quantity = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        verbose_name = 'Плейлист'
+        verbose_name_plural = 'Плейлисты'
+
 
     def __str__(self):
         return self.name

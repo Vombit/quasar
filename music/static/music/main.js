@@ -123,7 +123,7 @@ $(document).on('click', 'a.link', function () {
 });
 // update volume sound if change on server
 $("#volume_container").mouseup(function() {
-    updateData()
+    // updateData()
 });
 // like button on panel
 like_btn.addEventListener('click', () => {

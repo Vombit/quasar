@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 <div class="content_page">
     <div class="content_header">
         <div class="content_sub_info">
@@ -6,7 +6,9 @@
             <div class="content_sub_info_block">Последнее изменение: {{ playlist.correction|date:"Y-m-d" }}</div>
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ playlist.image }}" class="content_info_img" onerror="imgError(this);">
+            {% thumbnail playlist.image "256x256" crop="center" as im %}
+                <img src="/media/{{ im }}" class="content_info_img" onerror="imgError(this);">
+            {% endthumbnail %}
             <div class="content_type">Плейлист</div>
             {% if user_sub %}
                 <div class="subs" title="отписаться" onclick="sub_on('remove', 'playlist', '{{ playlist.url }}')">✔</div>

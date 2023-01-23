@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 
 <div class="content_page">
     <div class="content_body">
@@ -27,7 +27,9 @@
             <div class="content_body_container">
                 {% for item in top_tracks %}
                     <div class="content_body_container_el">
-                        <img src="/media/{{ item.image }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% thumbnail item.image "256x256" crop="center" as im %}
+                            <img src="/media/{{ im }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% endthumbnail %}
                         <h5 class="content_body_container_el_name" title="{{ item.name }}"><a href="/album/{{ item.album.url }}" class="link">{{ item.name }}</a></h5>
                         <div class="content_body_container_el_sub">
                             <div>{{ item.author.displayName }}</div>
@@ -64,7 +66,9 @@
             <div class="content_body_container">
                 {% for item in playlist %}
                     <div class="content_body_container_el">
-                        <img src="/media/{{ item.image }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% thumbnail item.image "256x256" crop="center" as im %}
+                            <img src="/media/{{ im }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% endthumbnail %}
                         <h5 class="content_body_container_el_name" title="{{ item.name }}"><a href="/playlist/{{ item.url }}" class="link">{{ item.name }}</a></h5>
                         <div class="content_body_container_el_sub">
                             <div>{{ item.author.displayName }}</div>

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 <div class="preferences_page">
     <h2>Настройки</h2>
 
@@ -7,7 +7,9 @@
         <div class="fields">
             <div class="field preferences_avatar">
                 <label for="avatar" class="item">Avatar</label>
-                <img src="/media/{{ user.avatar }}" class="item" onerror="imgError(this);">
+                {% thumbnail user.avatar "256x256" crop="center" as im %}
+                    <img src="/media/{{ im }}" class="item" onerror="imgError(this);">
+                {% endthumbnail %}
                 <input type="file" accept="image/png, image/jpeg" name="avatar" id="avatar" class="input-file">
                 <label for="avatar" class="item btn_upload modified-label">
                     <span class="js-fileName">Загрузить файл</span>

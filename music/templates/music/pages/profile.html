@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %}{% load thumbnail %}
 <div class="content_page">
     <div class="content_header">
         <div class="content_sub_info">
@@ -7,7 +7,9 @@
             {% endfor %}
         </div>
         <div class="content_info_block">
-            <img src="/media/{{ user.avatar }}" class="content_info_img" onerror="imgError(this);">
+            {% thumbnail user.avatar "256x256" crop="center" as im %}
+                <img src="/media/{{ im }}" class="content_info_img" onerror="imgError(this);">
+            {% endthumbnail %}
             <div class="content_type">Пользователь</div>
             <div class="content_info_text">{{ user.displayName }}</div>
         </div>
@@ -18,7 +20,9 @@
             <div class="content_body_container">
                 {% for item in tracks|slice:":8" %}
                     <div class="content_body_container_el">
-                        <img src="/media/{{ item.tracks.image }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% thumbnail item.tracks.image "256x256" crop="center" as im %}
+                            <img src="/media/{{ im }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% endthumbnail %}
                         <h5 class="content_body_container_el_name" title="{{ item.tracks.name }}"><a href="/album/{{ item.tracks.album.url }}" class="link">{{ item.tracks.name }}</a></h5>
                         <div class="content_body_container_el_sub" title="{{ item.tracks.artist.name }}">
                             <a href="/artist/{{ item.tracks.artist.url }}" class="link">{{ item.tracks.artist.name }}</a>
@@ -31,7 +35,9 @@
             <div class="content_body_container">
                 {% for item in playlists|slice:":8" %}
                     <div class="content_body_container_el">
-                        <img src="/media/{{ item.image }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% thumbnail item.tracks.image "256x256" crop="center" as im %}
+                            <img src="/media/{{ im }}" class="content_body_container_el_img" onerror="imgError(this);">
+                        {% endthumbnail %}
                         <h5 class="content_body_container_el_name" title="{{ item.name }}"><a href="/playlist/{{ item.url }}" class="link">{{ item.name }}</a></h5>
                     </div>
                 {% endfor %}

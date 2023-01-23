@@ -52,6 +52,7 @@ class ArtistAdmin(admin.ModelAdmin):
         (None, {'fields': ('url', 'slug_name')}),
         (('Info'), {'fields': ('name', 'description', 'image', 'is_author', 'verification', 'genres')}),
     )
+    list_filter = ('genres', )
     readonly_fields = ('url', 'slug_name')
     search_fields = ('name', 'is_author', 'genres__name', 'slug_name')
     # inlines = (AlbumAdminInline,)
@@ -63,6 +64,7 @@ class ArtistAlbumAdmin(admin.ModelAdmin):
         (None, {'fields': ('url', 'slug_name')}),
         (('Info'), {'fields': ('name', 'artist', 'image', 'date_album', 'album_status')}),
     )
+    list_filter = ('album_status', )
     readonly_fields = ('url', 'slug_name')
     search_fields = ('name', 'slug_name')
     inlines = (MusicAdminInline,)
@@ -87,6 +89,7 @@ class ArtistAlbumMusicAdmin(admin.ModelAdmin):
         (('Info'), {'fields': ('name', 'artist', 'sub_artist', 'album', 'auditions')}),
         (('Data'), {'fields': ('genres', 'track_type', 'image', 'audio_file', 'track_time')}),
     )
+    list_filter = ('language', 'genres')
     readonly_fields = ('url', 'auditions', 'track_time', 'slug_name')
     search_fields = ('name', 'album__name', 'artist__name', 'slug_name')
     
