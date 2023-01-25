@@ -1,5 +1,8 @@
 {% load thumbnail %}
 <div class="content_body_container_el">
+    {% if not item.image %}
+        <img src="/media/" onerror="imgError(this);">
+    {% endif %}
     {% thumbnail item.image "256x256" crop="center" as im %}
         <img src="/media/{{ im }}" class="content_body_container_el_img" onerror="imgError(this);">
     {% endthumbnail %}

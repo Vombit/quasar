@@ -7,6 +7,9 @@
             {% endfor %}
         </div>
         <div class="content_info_block">
+            {% if not user.avatar %}
+                <img src="/media/" class="content_info_img" onerror="imgError(this);">
+            {% endif %}
             {% thumbnail user.avatar "256x256" crop="center" as im %}
                 <img src="/media/{{ im }}" class="content_info_img" onerror="imgError(this);">
             {% endthumbnail %}

@@ -6,6 +6,9 @@
             <div class="content_sub_info_block">Последнее изменение: {{ playlist.correction|date:"Y-m-d" }}</div>
         </div>
         <div class="content_info_block">
+            {% if not playlist.image %}
+                <img src="/media/" class="content_info_img" onerror="imgError(this);">
+            {% endif %}
             {% thumbnail playlist.image "256x256" crop="center" as im %}
                 <img src="/media/{{ im }}" class="content_info_img" onerror="imgError(this);">
             {% endthumbnail %}
