@@ -25,6 +25,7 @@ urlpatterns = [
 
     path('favorite_music/', views.favorite_music, name='favorite_music'),
     path('artist/<author_id>', views.author, name='author'),
+    path('artist/<author_id>/discography', views.author_discography, name='author_discography'),
     path('album/<album_id>', views.album, name='album'),
     path('playlist/<playlist_id>', views.playlist, name='playlist'),
 
