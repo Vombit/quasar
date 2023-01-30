@@ -163,6 +163,22 @@ def author(request, author_id):
     return render(request, 'music/author.html', context)
 
 @login_required
+def author_discography(request, author_id):
+    author = get_object_or_404(Artist, url = author_id)
+    tracks = Music.objects.filter(Q(artist=author.id) | Q(sub_artist=author.id)).distinct().order_by('-auditions')
+    albums = Album.objects.filter(artist = author.id).order_by('-date_album')
+
+    context = {
+        'title': 'discography',
+        'author': author,
+        'albums': albums,
+        'tracks': tracks
+        }
+    if request.method == 'POST':
+        return HttpResponse(render(request, 'music/pages/discography.html', context))
+    return render(request, 'music/discography.html', context)
+
+@login_required
 def album(request, album_id):
     album = get_object_or_404(Album, url = album_id)
     tracks = Music.objects.filter(album = album.id)

@@ -1,0 +1,14 @@
+<div class="content_page">
+    {% for item in albums %}
+        {{ item.name }}
+        {{ item.album_status }}
+        {{ item.date_album }}
+        
+        {% for item_t in tracks %}
+            {% if item_t.album == item %}
+                {% include 'music/parts/track.html' %}
+            {% endif %}
+        {% endfor %}
+        <br><br><br><br>
+    {% endfor %}
+</div>
