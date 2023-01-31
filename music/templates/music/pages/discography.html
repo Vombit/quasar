@@ -1,14 +1,29 @@
-<div class="content_page">
-    {% for item in albums %}
-        {{ item.name }}
-        {{ item.album_status }}
-        {{ item.date_album }}
-        
-        {% for item_t in tracks %}
-            {% if item_t.album == item %}
-                {% include 'music/parts/track.html' %}
+{% load static %}{% load thumbnail %}
+<div class="content_page_disco">
+    {% for item_a in albums %}
+    <div class="content_header_disco">
+        <div class="content_sub_info">
+        </div>
+        <div class="content_info_block">
+            {% if not item_a.image %}
+                <img src="/media/" class="content_info_img" onerror="imgError(this);">
             {% endif %}
-        {% endfor %}
-        <br><br><br><br>
+            {% thumbnail item_a.image "256x256" crop="center" as im %}
+                <img src="/media/{{ im }}" class="content_info_img" onerror="imgError(this);">
+            {% endthumbnail %}
+            <div class="content_type">{{ item_a.get_album_status_display }} - {{ item_a.date_album|date:"Y" }}</div>
+            <div class="content_info_text">{{ item_a.name }}</div>
+        </div>
+    </div>
+    <div class="content_body_disco">
+        <div class="tracks_array">
+            {% for item in tracks %}
+                {% if item.album == item_a %}
+                    {% include 'music/parts/track.html' %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <br><br><br>
     {% endfor %}
 </div>
