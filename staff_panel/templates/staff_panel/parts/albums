@@ -1,0 +1,36 @@
+<div class="albums">
+    <h2 class="name_album">Альбом: {{ item.name }}</h2>
+    <div class="info_album">
+        <div class="url_album">
+            Страница: <a href="/album/{{ item.url }}"> {{ item.url }}</a>
+        </div>
+        <div class="slug-album">
+            Slug: <a href="#">{{ item.slug_name }}</a>
+        </div>
+        <div class="name_album">
+            name album: {{ item.name }}
+        </div>
+    </div>
+    <div class="date_album">
+        date album: {{ item.date_album }}
+    </div>
+    <div class="album_status">
+        album status: {{ item.album_status }}
+    </div>
+    <div class="image image_album">
+        <label for="image" class="item">Image</label>
+        <img src="/media/{{ item.image }}" class="item">
+        <input type="file" accept="image/*" name="image" id="image" class="input-file"> 
+        <label for="image" class="item btn_upload modified-label">
+            <span class="js-fileName">Загрузить файл</span>
+        </label>
+    </div>
+    <div class="track">
+        <h2 class="name_tracks">Треки</h2>
+        {% for item_t in tracks %}
+            {% if item_t.album == item %}
+                {% include 'staff_panel/parts/tracks' %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

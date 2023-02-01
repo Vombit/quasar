@@ -1,0 +1,30 @@
+<div class="tracks">
+    <div class="image image_track">
+        <img src="/media/{{ item_t.image }}" class="item">
+        <input type="file" accept="image/*" name="image" id="image" class="input-file">
+        <label for="image" class="item btn_upload modified-label">
+            <span class="js-fileName">Загрузить файл</span>
+        </label>
+    </div>
+    <div class="audio_file">
+        audio_file
+    </div>
+    <div class="genres_track">
+        genres_track
+    </div>
+    <div class="sub_artists">
+        sub_artists
+    </div>
+    <div class="language_track">
+        language track: {{ item_t.language }}
+    </div>
+    <div class="url_track">
+        Ссылка на трек: {{ item_t.url }}
+    </div>
+    <div class="slug_track">
+        Slug: <a href="#">{{ item_t.slug_name }}</a>
+    </div>
+    <div class="name_track">
+        name track: {{ item_t.name }} 
+    </div>
+</div>

@@ -16,7 +16,9 @@ form {
     justify-content: center;
 }
 
-
+.items.artist select {
+    min-width: 400px!important;
+}
 
 
 
@@ -129,8 +131,8 @@ form {
 
 .image img {
     border-radius: 12px;
-    width: 160px;
-    height: 160px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
 }
 .input-file {
@@ -142,7 +144,7 @@ form {
 .btn_upload {
     color: #777;
     line-height: 32px;
-    width: 200px;
+    width: 140px;
     border: 2px solid #444;
     border-radius: 8px;
 }
@@ -160,4 +162,10 @@ form {
     border-radius: 8px;
     border: 2px solid #000;
     min-height: 24px;
+}
+
+
+a {
+    text-decoration: none;
+    color: #999;
 }

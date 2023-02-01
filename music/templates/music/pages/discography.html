@@ -18,9 +18,13 @@
     <div class="content_body_disco">
         <div class="tracks_array">
             {% for item in tracks %}
-                {% if item.album == item_a %}
-                    {% include 'music/parts/track.html' %}
-                {% endif %}
+                {% with type="album" %}  
+                    {% if item.album == item_a %}
+                        {% with id=item_a.url %}  
+                            {% include 'music/parts/track.html' %}
+                        {% endwith %}
+                    {% endif %}
+                {% endwith %}
             {% endfor %}
         </div>
     </div>
