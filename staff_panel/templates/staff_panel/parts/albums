@@ -8,14 +8,19 @@
             Slug: <a href="#">{{ item.slug_name }}</a>
         </div>
         <div class="name_album">
-            name album: {{ item.name }}
+            <label for="name" class="item">Название альбома:</label>
+            <input type="text" name="name" value="{{ item.name }}" maxlength="128" required id="name" class="item text_input">
         </div>
     </div>
     <div class="date_album">
-        date album: {{ item.date_album }}
+        <label for="name" class="item">Дата создания альбома:</label>
+        <input type="text" value="">{{ item.date_album|date }}
     </div>
     <div class="album_status">
-        album status: {{ item.album_status }}
+        <label for="name" class="item">Тип альбома:</label>
+        <select name="album_status">
+            <option value="">{{ item.album_status }}</option>
+        </select>
     </div>
     <div class="image image_album">
         <label for="image" class="item">Image</label>
