@@ -137,6 +137,12 @@ def favorite_music(request):
         return HttpResponse(render(request, 'music/pages/favorite.html', context))
     return render(request, 'music/favorite_music.html', context)
 
+
+@login_required
+def needlog(request):
+    pass
+
+
 @login_required
 def author(request, author_id):
     author = get_object_or_404(Artist, url = author_id)
