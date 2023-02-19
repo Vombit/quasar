@@ -33,7 +33,7 @@ def get_info(request):
         tracks = Music.objects.filter(artist__url = artist_id)
         genres = GenresMusic.objects.all()
 
-        form = NameForm()
+        form = ArtistForm(instance=artists)
 
         context = {
             'title': 'Beta panel',
